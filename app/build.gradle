@@ -13,6 +13,11 @@ android {
         project.ext.set("archivesBaseName", applicationId + "_ver_" + versionName + "-" + getJenkinsBuildNumber())
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -20,6 +25,10 @@ android {
     }
     dexOptions {
         preDexLibraries true
+    }
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
     }
 }
 

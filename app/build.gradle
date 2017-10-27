@@ -7,21 +7,40 @@ android {
         multiDexEnabled true
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 1
+        versionCode getJenkinsBuildNumber()
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         project.ext.set("archivesBaseName", applicationId + "_ver_" + versionName + "-" + getJenkinsBuildNumber())
     }
+
+    signingConfigs {
+        release {
+            storeFile file("../release.jks") //key path
+            storePassword "release.jks"
+            keyAlias "release.jks"
+            keyPassword "release.jks"
+        }
+
+        debug {
+            storeFile file("../debug.jks") //key path
+            storePassword "debug.jks"
+            keyAlias "debug.jks"
+            keyPassword "debug.jks"
+        }
+    }
+
     buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         debug {
             minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
     }
     dexOptions {
         preDexLibraries true
@@ -33,7 +52,8 @@ android {
 }
 
 def getJenkinsBuildNumber() {
-    def number = System.getenv("BUILD_NUMBER") as Integer ?: 0
+    //Jenkins auto build number
+    def number = System.getenv("BUILD_NUMBER") as Integer ?: 1
     return number
 }
 

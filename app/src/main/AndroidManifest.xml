@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.myapplication">
 
+    <!-- 使用Sugar DB-->
+    <meta-data android:name="DATABASE" android:value="@string/db_name" />
+    <meta-data android:name="VERSION" android:value="@integer/db_version" />
+    <meta-data android:name="QUERY_LOG" android:value="@bool/db_query_log" />
+    <!-- DOMAIN_PACKAGE_NAME是application前一層目錄-->
+    <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.myapplication" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

@@ -4,31 +4,25 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.myapplication.R;
-import com.myapplication.Object.Interface.IRemoteConfig;
-import com.myapplication.utility.UtilityRemoteConfig;
-import com.myapplication.utility.UtilityToast;
+import com.variable.UtilitySharedPreferences;
+
 
 /**
  * Created by star on 2017/11/1.
  */
 
-public class BaseActivity extends AppCompatActivity implements IRemoteConfig {
+public class BaseActivity extends AppCompatActivity {
     private final String TAG = BaseActivity.class.getSimpleName();
-    protected Activity activity = BaseActivity.this;
+    protected Activity activity;
     protected Bundle bundle;
+    protected UtilitySharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        /**
-         * 設定 remote config
-         */
-        UtilityRemoteConfig.getNewInstance().init(this);
         activity = BaseActivity.this;
         bundle = getIntent().getExtras();
+        sharedpreferences = UtilitySharedPreferences.getNewInstance(activity);
     }
 
     @Override
@@ -73,15 +67,5 @@ public class BaseActivity extends AppCompatActivity implements IRemoteConfig {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public void onCompleteRemoteConfig(String msg) {
-        UtilityToast.getNewInstance().show(activity, msg);
-    }
-
-    @Override
-    public void onFailedRemoteConfig(String msg) {
-        UtilityToast.getNewInstance().show(activity, msg);
     }
 }

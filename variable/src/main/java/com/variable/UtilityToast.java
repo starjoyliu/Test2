@@ -1,4 +1,4 @@
-package com.myapplication.utility;
+package com.variable;
 
 import android.content.Context;
 import android.widget.Toast;

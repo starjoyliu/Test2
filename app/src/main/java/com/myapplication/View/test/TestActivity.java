@@ -7,7 +7,7 @@ import android.widget.Button;
 import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
-import com.myapplication.utility.UtilityToast;
+import com.variable.UtilityToast;
 
 /**
  * Created by star on 2017/11/1.

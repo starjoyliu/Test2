@@ -5,10 +5,11 @@ import android.support.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.myapplication.R;
 import com.myapplication.Object.Interface.IRemoteConfig;
+import com.myapplication.R;
 
 /**
+ * 搭配 IRemoteConfig 使用
  * Created by star on 2017/11/1.
  */
 

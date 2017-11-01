@@ -10,7 +10,7 @@ import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
 import com.myapplication.View.test.TestActivity;
 import com.myapplication.utility.Utility3;
-import com.myapplication.utility.UtilitySwitchActivity;
+import com.variable.UtilitySwitchActivity;
 
 public class MainActivity extends BaseActivity {
     private final String TAG = MainActivity.class.getSimpleName();

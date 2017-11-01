@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">My Application</string>
-
+    <!-- db log是否打開-->
+    <bool name="db_query_log">false</bool>
+    <!-- db版本修改-->
+    <integer name="db_version">1</integer>
+    <!-- db名稱修改 PS:若有新增/刪除欄位,需要修改db name,命名規則db_name_數字遞增.db-->
+    <string name="db_name">myapplication_1.db</string>
     <!-- 開關Firebase Crash Reporting-->
     <bool name="crash_reporting">true</bool>
+    <!-- 設定Logger是否打開-->
+    <bool name="debug_open">true</bool>
 
     <string name="activity_test_button">Load</string>
 </resources>

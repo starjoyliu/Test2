@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <!-- 開關Firebase Crash Reporting-->
+    <bool name="crash_reporting">true</bool>
+
+    <string name="activity_test_button">Load</string>
 </resources>

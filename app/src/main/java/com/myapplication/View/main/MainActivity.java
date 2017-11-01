@@ -1,10 +1,18 @@
-package com.myapplication;
+package com.myapplication.View.main;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.firebase.crash.FirebaseCrash;
+import com.myapplication.R;
+import com.myapplication.View.base.BaseActivity;
+import com.myapplication.View.test.TestActivity;
+import com.myapplication.utility.Utility3;
+import com.myapplication.utility.UtilitySwitchActivity;
+
+public class MainActivity extends BaseActivity {
     private final String TAG = MainActivity.class.getSimpleName();
     private Thread T1, T2;
     private Object obj1 = new Object();
@@ -15,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView text = findViewById(R.id.text);
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("load", "load");
+                UtilitySwitchActivity.getNewInstance().switchActivity(activity, TestActivity.class, true, bundle);
+            }
+        });
 
         T1 = new ThreadOnjectOne();
         T2 = new ThreadOnjectTwo();
@@ -70,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
 //                Log.d(TAG, "4. u2 setTmpData");
 //                Utility2.getNewInstance().setTmpData(10);
 //                Log.d(TAG, String.format("4. u2 TmpData: %s", Utility2.getNewInstance().getTmpData()));
+
+            FirebaseCrash.log(String.valueOf(Log.ERROR));
+            FirebaseCrash.logcat(Log.ERROR, TAG, "error");
+            FirebaseCrash.report(new Exception("My first Android non-fatal error 1"));
 
             Log.d(TAG, "6. u3 setTmpData");
             Utility3.getNewInstance().setTmpData(10);

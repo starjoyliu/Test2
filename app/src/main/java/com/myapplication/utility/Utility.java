@@ -1,4 +1,4 @@
-package com.myapplication;
+package com.myapplication.utility;
 
 /**
  * Created by star on 2017/10/30.

@@ -34,13 +34,14 @@ public class BaseActivity extends AppCompatActivity implements IRemoteConfig {
     @Override
     protected void onStart() {
         super.onStart();
-//        activity = BaseActivity.this;
-//        bundle = getIntent().getExtras();
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        if(savedInstanceState!=null){
+            if(savedInstanceState.containsKey("bundle")) bundle = savedInstanceState.getBundle("bundle");
+        }
     }
 
     @Override
@@ -56,6 +57,7 @@ public class BaseActivity extends AppCompatActivity implements IRemoteConfig {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putBundle("bundle", bundle);
     }
 
     @Override

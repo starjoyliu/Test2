@@ -16,15 +16,15 @@ public class MainApplication extends MultiDexApplication{
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
-        /**
-         * 開關Firebase Crash Reporting
-         */
-        FirebaseCrash.setCrashCollectionEnabled(getResources().getBoolean(R.bool.crash_reporting));
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        /**
+         * 開關 Firebase Crash Reporting
+         */
+        FirebaseCrash.setCrashCollectionEnabled(getResources().getBoolean(R.bool.crash_reporting));
     }
 
     @Override

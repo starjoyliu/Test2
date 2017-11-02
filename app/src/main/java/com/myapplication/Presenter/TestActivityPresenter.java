@@ -2,7 +2,8 @@ package com.myapplication.Presenter;
 
 import android.os.Bundle;
 
-import com.myapplication.Model.MTestActivity;
+import com.myapplication.Database.DBTest;
+import com.myapplication.Model.TestActivityModel;
 import com.myapplication.View.test.ITestActivity;
 
 /**
@@ -11,26 +12,34 @@ import com.myapplication.View.test.ITestActivity;
 
 public class TestActivityPresenter {
     private ITestActivity iTestActivity;
-    private MTestActivity mTestActivity;
+    private TestActivityModel testActivityModel;
     private Bundle data;
 
-    public TestActivityPresenter(ITestActivity iTestActivity, Bundle data){
+    public TestActivityPresenter(ITestActivity iTestActivity){
         this.iTestActivity = iTestActivity;
-        this.data = data;
 
-        mTestActivity = new MTestActivity();
-        mTestActivity.setData(this.data);
+        testActivityModel = new TestActivityModel();
     }
 
-    public Bundle getData(){
-        return mTestActivity.getData();
+    public void load(){
+        DBTest dbTest = testActivityModel.load();
+        if(dbTest!=null){
+            iTestActivity.setEtName(dbTest.getName());
+            iTestActivity.setEtPhone(dbTest.getPhone());
+            iTestActivity.msg("Load user successfully!");
+        }else{
+            iTestActivity.setEtName("");
+            iTestActivity.setEtPhone("");
+            iTestActivity.msg("No user data!");
+        }
     }
 
-    public String getButtonLoadText(){
-        return getData().getString("load");
-    }
-
-    public void loadButtonText(){
-        iTestActivity.setButtonLoadText(getButtonLoadText());
+    public void update(String name, String phone){
+        boolean bUpdate = testActivityModel.update(name, phone);
+        if (bUpdate){
+            iTestActivity.msg("Update user successfully!");
+        }else{
+            iTestActivity.msg("No user data!");
+        }
     }
 }

@@ -58,13 +58,16 @@ public class DBTest extends SugarRecord {
         }
     }
 
-    public static void updateUser(String name, String phone){
+    public static boolean updateUser(String name, String phone){
         List<DBTest> dbTests = find(DBTest.class, "name=?", name);
         if (dbTests.size()>0){
             DBTest dbTest = dbTests.get(0);
             dbTest.name = name;
             dbTest.phone = phone;
             dbTest.save();
+            return true;
+        }else{
+            return false;
         }
     }
 

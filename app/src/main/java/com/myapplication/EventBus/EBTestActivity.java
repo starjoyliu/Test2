@@ -5,13 +5,13 @@ package com.myapplication.EventBus;
  */
 
 public class EBTestActivity {
-    private int channelId;
+    private String msg;
 
-    public EBTestActivity(int channelId) {
-        this.channelId = channelId;
+    public EBTestActivity(String msg) {
+        this.msg = msg;
     }
 
-    public int getChannelId(){
-        return channelId;
+    public String getMsg(){
+        return msg;
     }
 }

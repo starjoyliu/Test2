@@ -5,10 +5,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.arasthel.asyncjob.AsyncJob;
 import com.google.firebase.crash.FirebaseCrash;
 import com.log.Logger;
-import com.myapplication.Database.DBTest;
 import com.myapplication.EventBus.EBDBTest;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
@@ -20,8 +18,6 @@ import com.variable.UtilityToast;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
-import java.util.List;
 
 public class MainActivity extends BaseActivity {
     private final String TAG = MainActivity.class.getSimpleName();
@@ -48,11 +44,11 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        T1 = new ThreadOnjectOne();
-        T2 = new ThreadOnjectTwo();
-
-        T1.start();
-        T2.start();
+//        T1 = new ThreadOnjectOne();
+//        T2 = new ThreadOnjectTwo();
+//
+//        T1.start();
+//        T2.start();
     }
 
     private class ThreadOnjectOne extends Thread{
@@ -77,17 +73,17 @@ public class MainActivity extends BaseActivity {
 //                Log.d(TAG, String.format("2. u2 TmpData: %s", Utility2.getNewInstance().getTmpData()));
 
             //DB test, insert data
-            for (int i=0;i<10;i++){
-                DBTest.insertUser(String.format("Star %s", String.valueOf(i)), "096300000" + String.valueOf(i));
-
-                DBTest.updateUser(String.format("Star %s", String.valueOf(i)), "096300000" + String.valueOf(i+1));
-            }
-
-            List<DBTest> dbTestList =  DBTest.getAll();
-            int size = dbTestList.size();
-            for (DBTest d : dbTestList){
-                Logger.d(d.getName() + " " + d.getPhone());
-            }
+//            for (int i=0;i<10;i++){
+//                DBTest.insertUser(String.format("Star %s", String.valueOf(i)), "096300000" + String.valueOf(i));
+//
+//                DBTest.updateUser(String.format("Star %s", String.valueOf(i)), "096300000" + String.valueOf(i+1));
+//            }
+//
+//            List<DBTest> dbTestList =  DBTest.getAll();
+//            int size = dbTestList.size();
+//            for (DBTest d : dbTestList){
+//                Logger.d(d.getName() + " " + d.getPhone());
+//            }
 
             Logger.d("5. u3 setTmpData");
             Utility3.getNewInstance().setTmpData(10000);
@@ -125,39 +121,39 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        AsyncJob.doInBackground(new AsyncJob.OnBackgroundJob(){
-            @Override
-            public void doOnBackground() {
-                // doOnBackground
-                Logger.d("7. u3 setTmpData");
-                Utility3.getNewInstance().setTmpData(10000);
-                Logger.d(String.format("7. u3 TmpData: %s", Utility3.getNewInstance().getTmpData()));
+//        AsyncJob.doInBackground(new AsyncJob.OnBackgroundJob(){
+//            @Override
+//            public void doOnBackground() {
+//                // doOnBackground
+//                Logger.d("7. u3 setTmpData");
+//                Utility3.getNewInstance().setTmpData(10000);
+//                Logger.d(String.format("7. u3 TmpData: %s", Utility3.getNewInstance().getTmpData()));
+//
+//                AsyncJob.doOnMainThread(new AsyncJob.OnMainThreadJob() {
+//                    @Override
+//                    public void doInUIThread() {
+//                        // doInUIThread
+//                    }
+//                });
+//            }
+//        }, UtilityAsync.getNewInstance().getExecutorService());
 
-                AsyncJob.doOnMainThread(new AsyncJob.OnMainThreadJob() {
-                    @Override
-                    public void doInUIThread() {
-                        // doInUIThread
-                    }
-                });
-            }
-        }, UtilityAsync.getNewInstance().getExecutorService());
-
-        AsyncJob.doInBackground(new AsyncJob.OnBackgroundJob(){
-            @Override
-            public void doOnBackground() {
-                // doOnBackground
-                Logger.d("8. u3 setTmpData");
-                Utility3.getNewInstance().setTmpData(10);
-                Logger.d(String.format("8. u3 TmpData: %s", Utility3.getNewInstance().getTmpData()));
-
-                AsyncJob.doOnMainThread(new AsyncJob.OnMainThreadJob() {
-                    @Override
-                    public void doInUIThread() {
-                        // doInUIThread
-                    }
-                });
-            }
-        }, UtilityAsync.getNewInstance().getExecutorService());
+//        AsyncJob.doInBackground(new AsyncJob.OnBackgroundJob(){
+//            @Override
+//            public void doOnBackground() {
+//                // doOnBackground
+//                Logger.d("8. u3 setTmpData");
+//                Utility3.getNewInstance().setTmpData(10);
+//                Logger.d(String.format("8. u3 TmpData: %s", Utility3.getNewInstance().getTmpData()));
+//
+//                AsyncJob.doOnMainThread(new AsyncJob.OnMainThreadJob() {
+//                    @Override
+//                    public void doInUIThread() {
+//                        // doInUIThread
+//                    }
+//                });
+//            }
+//        }, UtilityAsync.getNewInstance().getExecutorService());
     }
 
     @Override

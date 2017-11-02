@@ -11,5 +11,8 @@
     <!-- 設定Logger是否打開-->
     <bool name="debug_open">true</bool>
 
-    <string name="activity_test_button">Load</string>
+    <string name="activity_et_name">Input your name...</string>
+    <string name="activity_et_phone">Input your phone...</string>
+    <string name="activity_load_button">Load</string>
+    <string name="activity_update_button">Update</string>
 </resources>

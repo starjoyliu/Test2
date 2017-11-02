@@ -5,6 +5,9 @@ package com.myapplication.View.test;
  */
 
 public interface ITestActivity {
-    void setButtonLoadText(String msg);
-    String getButtonLoadText();
+    void msg(String msg);
+    String getEtName();
+    void setEtName(String name);
+    String getEtPhone();
+    void setEtPhone(String phone);
 }

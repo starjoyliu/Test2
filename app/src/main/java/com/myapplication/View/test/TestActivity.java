@@ -3,10 +3,12 @@ package com.myapplication.View.test;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
+import com.variable.UtilityKeyboard;
 import com.variable.UtilityToast;
 
 /**
@@ -16,7 +18,8 @@ import com.variable.UtilityToast;
 public class TestActivity extends BaseActivity implements ITestActivity {
     private final String TAG = TestActivity.class.getSimpleName();
 
-    private Button btnLoad;
+    private Button btnLoad, btnUpdate;
+    private EditText etName, etPhone;
     private TestActivityPresenter testActivityPresenter;
 
     @Override
@@ -24,20 +27,29 @@ public class TestActivity extends BaseActivity implements ITestActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        btnLoad = findViewById(R.id.button2);
+        etName = findViewById(R.id.editText);
+        etPhone = findViewById(R.id.editText2);
+        btnLoad = findViewById(R.id.load_button);
+        btnUpdate = findViewById(R.id.update_button);
 
-        testActivityPresenter = new TestActivityPresenter(this, bundle);
+        testActivityPresenter = new TestActivityPresenter(this);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        testActivityPresenter.loadButtonText();
-
         btnLoad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UtilityToast.getNewInstance().show(activity, getButtonLoadText());
+                UtilityKeyboard.getNewInstance().hiddenKeyboard(activity, view);
+                testActivityPresenter.load();
+            }
+        });
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UtilityKeyboard.getNewInstance().hiddenKeyboard(activity, view);
+                testActivityPresenter.update(getEtName(), getEtPhone());
             }
         });
     }
@@ -78,12 +90,27 @@ public class TestActivity extends BaseActivity implements ITestActivity {
     }
 
     @Override
-    public void setButtonLoadText(String msg) {
-        btnLoad.setText(msg);
+    public void msg(String msg) {
+        UtilityToast.getNewInstance().show(activity, msg);
     }
 
     @Override
-    public String getButtonLoadText() {
-        return testActivityPresenter.getButtonLoadText();
+    public String getEtName() {
+        return etName.getText().toString();
+    }
+
+    @Override
+    public void setEtName(String name) {
+        etName.setText(name);
+    }
+
+    @Override
+    public String getEtPhone() {
+        return etPhone.getText().toString();
+    }
+
+    @Override
+    public void setEtPhone(String phone) {
+        etPhone.setText(phone);
     }
 }

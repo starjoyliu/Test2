@@ -1,6 +1,6 @@
 package com.variable;
 
-import android.content.Context;
+import android.app.Activity;
 import android.widget.Toast;
 
 /**
@@ -23,11 +23,16 @@ public class UtilityToast {
         return u;
     }
 
-    public void show(Context context, String msg, int duration){
-        Toast.makeText(context, msg, duration).show();
+    public void show(final Activity context, final String msg, final int duration){
+        context.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(context, msg, duration).show();
+            }
+        });
     }
 
-    public void show(Context context, String msg){
+    public void show(Activity context, String msg){
         show(context, msg, Toast.LENGTH_SHORT);
     }
 }

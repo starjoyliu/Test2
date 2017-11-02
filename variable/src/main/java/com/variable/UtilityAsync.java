@@ -7,6 +7,24 @@ import java.util.concurrent.Executors;
  * Created by star on 2017/11/1.
  */
 public class UtilityAsync {
+    /**
+     * sample code
+     * AsyncJob.doInBackground(new AsyncJob.OnBackgroundJob(){
+     *      @Override
+     *      public void doOnBackground() {
+     *          // doOnBackground
+     *
+     *          AsyncJob.doOnMainThread(new AsyncJob.OnMainThreadJob() {
+     *              @Override
+     *              public void doInUIThread() {
+     *                  // doInUIThread
+     *              }
+     *          });
+     *      }
+     * }, UtilityAsync.getNewInstance().getExecutorService());
+     */
+
+
     private static UtilityAsync utilityAsync;
     private static ExecutorService executorService;
 
@@ -18,10 +36,6 @@ public class UtilityAsync {
             synchronized (UtilityAsync.class) {
                 if(u == null) {
                     u = new UtilityAsync();
-                    /**
-                     * {@link Executors}
-                     */
-                    executorService = Executors.newCachedThreadPool();
                 }
             }
         }
@@ -29,6 +43,12 @@ public class UtilityAsync {
     }
 
     public ExecutorService getExecutorService(){
+        if (executorService==null){
+            /**
+             * {@link Executors}
+             */
+            executorService = Executors.newCachedThreadPool();
+        }
         return executorService;
     }
 

@@ -77,6 +77,8 @@ dependencies {
     implementation 'com.github.satyan:sugar:1.5'
     implementation project(':variable')
     implementation project(':log')
+    //權限管理
+    implementation 'com.karumi:dexter:4.2.0'
 }
 
 

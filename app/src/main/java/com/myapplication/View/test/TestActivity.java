@@ -1,13 +1,17 @@
 package com.myapplication.View.test;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
+import com.variable.UtilityDialog;
 import com.variable.UtilityKeyboard;
 import com.variable.UtilityToast;
 
@@ -32,7 +36,7 @@ public class TestActivity extends BaseActivity implements ITestActivity {
         btnLoad = findViewById(R.id.load_button);
         btnUpdate = findViewById(R.id.update_button);
 
-        testActivityPresenter = new TestActivityPresenter(this);
+        testActivityPresenter = new TestActivityPresenter(activity, this);
     }
 
     @Override
@@ -43,6 +47,23 @@ public class TestActivity extends BaseActivity implements ITestActivity {
             public void onClick(View view) {
                 UtilityKeyboard.getNewInstance().hiddenKeyboard(activity, view);
                 testActivityPresenter.load();
+                UtilityDialog.getNewInstance().show(activity
+                        , R.string.activity_test_dialog_title
+                        , R.string.activity_test_dialog_content
+                        , R.string.activity_test_dialog_pos_text
+                        , new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                dialog.dismiss();
+                            }
+                        }
+                        , R.string.activity_test_dialog_neg_text
+                        , new MaterialDialog.SingleButtonCallback() {
+                            @Override
+                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                dialog.dismiss();
+                            }
+                        });
             }
         });
         btnUpdate.setOnClickListener(new View.OnClickListener() {

@@ -68,19 +68,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-config:11.0.4'
     testImplementation 'junit:junit:4.12'
     //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:27.0.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    implementation 'com.android.support:appcompat-v7:27.0.0'
+    compile project(path: ':log')
+    compile project(path: ':variable')
     implementation 'org.greenrobot:eventbus:3.1.0-RC'
     implementation 'com.arasthel:asyncjob-library:1.0.3'
     implementation 'com.squareup.okhttp3:okhttp:3.9.0'
     implementation 'com.github.satyan:sugar:1.5'
-    implementation project(':variable')
-    implementation project(':log')
-    //權限管理
-    implementation 'com.karumi:dexter:4.2.0'
 }
-
-
 
 apply plugin: 'com.google.gms.google-services'

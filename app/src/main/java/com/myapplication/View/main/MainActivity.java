@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.arasthel.asyncjob.AsyncJob;
 import com.google.firebase.crash.FirebaseCrash;
 import com.log.Logger;
 import com.myapplication.EventBus.EBDBTest;

@@ -1,1 +1,1 @@
-include ':app', ':log', ':variable'
+include ':app', ':log', ':variable', ":MaterialStyledDialogs"

@@ -11,8 +11,16 @@
     <!-- 設定Logger是否打開-->
     <bool name="debug_open">true</bool>
 
+    <!-- TestActivity.class-->
     <string name="activity_et_name">Input your name...</string>
     <string name="activity_et_phone">Input your phone...</string>
     <string name="activity_load_button">Load</string>
     <string name="activity_update_button">Update</string>
+    <string name="activity_load_user_successfully">Load user successfully</string>
+    <string name="activity_update_user_successfully">Update user successfully</string>
+    <string name="activity_no_user_data">No user data</string>
+    <string name="activity_test_dialog_title">activity_test_dialog_title</string>
+    <string name="activity_test_dialog_content">activity_test_dialog_content</string>
+    <string name="activity_test_dialog_pos_text">confirm</string>
+    <string name="activity_test_dialog_neg_text">cancel</string>
 </resources>

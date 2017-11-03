@@ -16,11 +16,11 @@ import com.github.javiersantos.materialstyleddialogs.enums.Style;
  */
 
 public class UtilityDialog {
-    private final @DrawableRes Integer DEFAULT_ICON = -999;
-    private final @ColorRes int DEFAULT_HEADER_COLOR = -999;
-    private final @StringRes int DEFAULT_NEG_TEXT = -999;
-    private final @StringRes int DEFAULT_TITLE_TEXT = -999;
-    private final @IntegerRes int DEFAULT_PADDING = -999;
+    public final @DrawableRes Integer DEFAULT_ICON = -999;
+    public final @ColorRes int DEFAULT_HEADER_COLOR = -999;
+    public final @StringRes int DEFAULT_NEG_TEXT = -999;
+    public final @StringRes int DEFAULT_TITLE_TEXT = -999;
+    public final @IntegerRes int DEFAULT_PADDING = -999;
 
     private volatile static UtilityDialog u;
 
@@ -203,10 +203,10 @@ public class UtilityDialog {
      * @param iconRes
      * @param headerColor
      * @param customView
-     * @param paddingLeft
-     * @param paddingTop
-     * @param paddingRight
-     * @param paddingBottom
+     * @param paddingLeft dp
+     * @param paddingTop dp
+     * @param paddingRight dp
+     * @param paddingBottom dp
      */
     public void showCUSTOM(Activity activity, @StringRes int title, @StringRes int content
             , @DrawableRes Integer iconRes, @ColorRes int headerColor

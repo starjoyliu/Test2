@@ -8,12 +8,15 @@ import android.widget.EditText;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.log.Logger;
 import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
 import com.variable.UtilityDialog;
 import com.variable.UtilityKeyboard;
+import com.variable.UtilityRes;
 import com.variable.UtilityToast;
+import com.variable.UtilityUI;
 
 /**
  * Created by star on 2017/11/1.
@@ -47,6 +50,7 @@ public class TestActivity extends BaseActivity implements ITestActivity {
             public void onClick(View view) {
                 UtilityKeyboard.getNewInstance().hiddenKeyboard(activity, view);
                 testActivityPresenter.load();
+
                 UtilityDialog.getNewInstance().show(activity
                         , R.string.activity_test_dialog_title
                         , R.string.activity_test_dialog_content
@@ -71,6 +75,20 @@ public class TestActivity extends BaseActivity implements ITestActivity {
             public void onClick(View view) {
                 UtilityKeyboard.getNewInstance().hiddenKeyboard(activity, view);
                 testActivityPresenter.update(getEtName(), getEtPhone());
+
+                View v = activity.getLayoutInflater().inflate(R.layout.test_custom_view_dialog, null);
+                UtilityDialog.getNewInstance().showCUSTOM(activity
+                        , R.string.activity_test_dialog_title
+                        , R.string.activity_test_dialog_content
+                        , R.drawable.common_google_signin_btn_icon_dark
+                        , UtilityDialog.getNewInstance().DEFAULT_HEADER_COLOR
+                        , v
+                        , UtilityRes.getNewInstance().getInteger(activity, R.integer.test_custom_view_padding)
+                        , UtilityRes.getNewInstance().getInteger(activity, R.integer.test_custom_view_padding)
+                        , UtilityRes.getNewInstance().getInteger(activity, R.integer.test_custom_view_padding)
+                        , UtilityRes.getNewInstance().getInteger(activity, R.integer.test_custom_view_padding));
+
+                Logger.d("test bool: " + UtilityRes.getNewInstance().getBool(activity, R.bool.test_bool));
             }
         });
     }

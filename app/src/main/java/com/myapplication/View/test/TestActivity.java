@@ -16,7 +16,6 @@ import com.variable.UtilityDialog;
 import com.variable.UtilityKeyboard;
 import com.variable.UtilityRes;
 import com.variable.UtilityToast;
-import com.variable.UtilityUI;
 
 /**
  * Created by star on 2017/11/1.
@@ -88,7 +87,7 @@ public class TestActivity extends BaseActivity implements ITestActivity {
                         , UtilityRes.getNewInstance().getInteger(activity, R.integer.test_custom_view_padding)
                         , UtilityRes.getNewInstance().getInteger(activity, R.integer.test_custom_view_padding));
 
-                Logger.d("test bool: " + UtilityRes.getNewInstance().getBool(activity, R.bool.test_bool));
+                Logger.d("test bool: " + UtilityRes.getNewInstance().getBoolean(activity, R.bool.test_bool));
             }
         });
     }

@@ -27,7 +27,7 @@ public class UtilityRes {
     /**
      * 取得integer值
      * @param activity
-     * @param res
+     * @param res path: values/integers.xml
      * @return
      */
     public int getInteger(Activity activity, @IntegerRes int res){
@@ -37,10 +37,10 @@ public class UtilityRes {
     /**
      * 取得boolean值
      * @param activity
-     * @param res
+     * @param res path: values/bools.xml
      * @return
      */
-    public boolean getBool(Activity activity, @BoolRes int res){
+    public boolean getBoolean(Activity activity, @BoolRes int res){
         return activity.getResources().getBoolean(res);
     }
 }

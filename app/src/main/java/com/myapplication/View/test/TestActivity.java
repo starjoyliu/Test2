@@ -8,10 +8,12 @@ import android.widget.EditText;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.log.Logger;
 import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
+import com.variable.UtilityAnimation;
 import com.variable.UtilityDialog;
 import com.variable.UtilityKeyboard;
 import com.variable.UtilityRes;
@@ -50,23 +52,25 @@ public class TestActivity extends BaseActivity implements ITestActivity {
                 UtilityKeyboard.getNewInstance().hiddenKeyboard(activity, view);
                 testActivityPresenter.load();
 
-                UtilityDialog.getNewInstance().show(activity
-                        , R.string.activity_test_dialog_title
-                        , R.string.activity_test_dialog_content
-                        , R.string.activity_test_dialog_pos_text
-                        , new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                dialog.dismiss();
-                            }
-                        }
-                        , R.string.activity_test_dialog_neg_text
-                        , new MaterialDialog.SingleButtonCallback() {
-                            @Override
-                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                dialog.dismiss();
-                            }
-                        });
+                UtilityAnimation.getNewInstance().FlipInX(view);
+
+//                UtilityDialog.getNewInstance().show(activity
+//                        , R.string.activity_test_dialog_title
+//                        , R.string.activity_test_dialog_content
+//                        , R.string.activity_test_dialog_pos_text
+//                        , new MaterialDialog.SingleButtonCallback() {
+//                            @Override
+//                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+//                                dialog.dismiss();
+//                            }
+//                        }
+//                        , R.string.activity_test_dialog_neg_text
+//                        , new MaterialDialog.SingleButtonCallback() {
+//                            @Override
+//                            public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+//                                dialog.dismiss();
+//                            }
+//                        });
             }
         });
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +80,7 @@ public class TestActivity extends BaseActivity implements ITestActivity {
                 testActivityPresenter.update(getEtName(), getEtPhone());
 
                 View v = activity.getLayoutInflater().inflate(R.layout.test_custom_view_dialog, null);
-                UtilityDialog.getNewInstance().showCUSTOM(activity
+                final MaterialStyledDialog materialStyledDialog = UtilityDialog.getNewInstance().showCUSTOM(activity
                         , R.string.activity_test_dialog_title
                         , R.string.activity_test_dialog_content
                         , R.drawable.common_google_signin_btn_icon_dark
@@ -86,6 +90,13 @@ public class TestActivity extends BaseActivity implements ITestActivity {
                         , UtilityRes.getNewInstance().getInteger(activity, R.integer.test_custom_view_padding)
                         , UtilityRes.getNewInstance().getInteger(activity, R.integer.test_custom_view_padding)
                         , UtilityRes.getNewInstance().getInteger(activity, R.integer.test_custom_view_padding));
+                v.findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        materialStyledDialog.dismiss();
+                    }
+                });
+                materialStyledDialog.show();
 
                 Logger.d("test bool: " + UtilityRes.getNewInstance().getBoolean(activity, R.bool.test_bool));
             }

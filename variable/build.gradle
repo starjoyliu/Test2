@@ -21,21 +21,21 @@ android {
 
 }
 
-repositories {
-    jcenter()
-    maven {
-        url "https://jitpack.io"
-    }
-}
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':log')
+    /**
+     * api 表示上層能夠直接呼叫
+     */
+    api project(':log')
+    api 'org.greenrobot:eventbus:3.1.0-RC'
+    api 'com.arasthel:asyncjob-library:1.0.3'
+    api 'com.github.javiersantos:MaterialStyledDialogs:2.1'
+
+    /**
+     * implementation 上層無法直接呼叫
+     */
     implementation 'com.muddzdev:styleabletoast:1.0.9'
-    //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:27.0.0'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    androidTestCompile 'junit:junit:4.12'
-    implementation 'com.github.javiersantos:MaterialStyledDialogs:2.1'
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
 }

@@ -106,7 +106,6 @@ public class UtilityDialog {
         dialog.setDescription(content);
         dialog.setPositiveText(posText);
         dialog.onPositive(posCallback);
-
         if (negText!=DEFAULT_NEG_TEXT && negCallback!=null){
             dialog.setNegativeText(negText);
             dialog.onNegative(negCallback);
@@ -181,6 +180,7 @@ public class UtilityDialog {
 
     /**
      * 顯示自訂View Dialog, 自訂icon和header背景
+     * PS: 自己要call show, 否則不會顯示
      * @param activity
      * @param title
      * @param content
@@ -188,15 +188,16 @@ public class UtilityDialog {
      * @param headerColor
      * @param customView
      */
-    public void showCUSTOM(Activity activity, @StringRes int title, @StringRes int content
+    public MaterialStyledDialog showCUSTOM(Activity activity, @StringRes int title, @StringRes int content
             , @DrawableRes Integer iconRes, @ColorRes int headerColor
             , View customView){
-        showCUSTOM(activity, title, content, iconRes, headerColor, customView
+        return showCUSTOM(activity, title, content, iconRes, headerColor, customView
         , DEFAULT_PADDING, DEFAULT_PADDING, DEFAULT_PADDING, DEFAULT_PADDING);
     }
 
     /**
      * 顯示自訂View Dialog, 自訂icon和header背景, 自訂padding
+     * PS: 自己要call show, 否則不會顯示
      * @param activity
      * @param title
      * @param content
@@ -208,10 +209,11 @@ public class UtilityDialog {
      * @param paddingRight dp
      * @param paddingBottom dp
      */
-    public void showCUSTOM(Activity activity, @StringRes int title, @StringRes int content
+    public MaterialStyledDialog showCUSTOM(Activity activity, @StringRes int title, @StringRes int content
             , @DrawableRes Integer iconRes, @ColorRes int headerColor
             , View customView
             , @IntegerRes int paddingLeft, @IntegerRes int paddingTop, @IntegerRes int paddingRight, @IntegerRes int paddingBottom){
+
         final MaterialStyledDialog.Builder dialog = new MaterialStyledDialog.Builder(activity);
         dialog.setDescription(content);
         dialog.setStyle(Style.HEADER_WITH_TITLE);
@@ -237,8 +239,7 @@ public class UtilityDialog {
             dialog.setStyle(Style.HEADER_WITH_ICON);
             dialog.setIcon(iconRes);
         }
-
-        dialogShow(activity, dialog);
+        return dialog.build();
     }
 
     /**

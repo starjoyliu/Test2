@@ -10,6 +10,8 @@
     <bool name="crash_reporting">true</bool>
     <!-- 設定Logger是否打開-->
     <bool name="debug_open">true</bool>
+    <!-- 色碼模式-->
+    <string name="skin_mode">NORMAL_SKIN</string>
 
     <!-- TestActivity.class-->
     <string name="activity_et_name">Input your name...</string>

@@ -12,7 +12,6 @@ import com.myapplication.R;
  * 搭配 IRemoteConfig 使用
  * Created by star on 2017/11/1.
  */
-
 public class UtilityRemoteConfig {
     private volatile static UtilityRemoteConfig u;
     private FirebaseRemoteConfig firebaseRemoteConfig;
@@ -58,7 +57,7 @@ public class UtilityRemoteConfig {
         return firebaseRemoteConfig.getBoolean(key);
     }
 
-    public long getInt(String key){
+    public long getLong(String key){
         return firebaseRemoteConfig.getLong(key);
     }
 }

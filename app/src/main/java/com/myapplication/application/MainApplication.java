@@ -1,4 +1,4 @@
-package com.myapplication.View.application;
+package com.myapplication.application;
 
 import android.content.Context;
 import android.support.multidex.MultiDex;
@@ -9,6 +9,8 @@ import com.log.LogLevel;
 import com.log.Logger;
 import com.myapplication.R;
 import com.orm.SugarContext;
+import com.myapplication.utility.skin.UtilitySkin;
+import com.myapplication.utility.skin.key.SkinMode;
 
 /**
  * Created by star on 2017/10/26.
@@ -36,6 +38,10 @@ public class MainApplication extends MultiDexApplication{
          * init Sugar Database
          */
         SugarContext.init(getApplicationContext());
+        /**
+         * 設定 skin
+         */
+        UtilitySkin.getNewInstance().initSkin(getResources().getString(R.string.skin_mode));
     }
 
     @Override

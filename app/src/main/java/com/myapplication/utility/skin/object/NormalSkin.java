@@ -1,6 +1,6 @@
 package com.myapplication.utility.skin.object;
 
-import com.variable.R;
+import com.myapplication.R;
 
 /**
  * 一般色碼

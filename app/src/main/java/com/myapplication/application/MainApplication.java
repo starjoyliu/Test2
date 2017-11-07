@@ -11,6 +11,7 @@ import com.myapplication.R;
 import com.orm.SugarContext;
 import com.myapplication.utility.skin.UtilitySkin;
 import com.myapplication.utility.skin.key.SkinMode;
+import com.variable.UtilityPhone;
 
 /**
  * Created by star on 2017/10/26.
@@ -42,6 +43,10 @@ public class MainApplication extends MultiDexApplication{
          * 設定 skin
          */
         UtilitySkin.getNewInstance().initSkin(getResources().getString(R.string.skin_mode));
+        /**
+         * 取得 Phone 資訊
+         */
+        UtilityPhone.getNewInstance().init();
     }
 
     @Override

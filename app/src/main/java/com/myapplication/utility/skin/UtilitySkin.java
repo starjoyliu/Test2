@@ -31,9 +31,9 @@ public class UtilitySkin {
      * init skin
      * @param skinMode {@link SkinMode}
      */
-    public void initSkin(String skinMode){
-        if (skinMode.equals(SkinMode.NORMAL_SKIN.name())){
-            this.skinMode = SkinMode.NORMAL_SKIN;
+    public void initSkin(String mSkinMode){
+        if (mSkinMode.equals(SkinMode.NORMAL_SKIN.name())){
+            skinMode = SkinMode.NORMAL_SKIN;
         }
     }
 

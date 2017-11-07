@@ -43,4 +43,14 @@ public class UtilityRes {
     public boolean getBoolean(Activity activity, @BoolRes int res){
         return activity.getResources().getBoolean(res);
     }
+
+    /**
+     * 取得string值
+     * @param activity
+     * @param res
+     * @return
+     */
+    public String getString(Activity activity, int res){
+        return activity.getResources().getString(res);
+    }
 }

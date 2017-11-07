@@ -10,13 +10,16 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.log.Logger;
+import com.myapplication.Presenter.Speech2TextPresenter;
 import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
+import com.myapplication.View.speech2text.Speech2TextActivity;
 import com.variable.UtilityAnimation;
 import com.variable.UtilityDialog;
 import com.variable.UtilityKeyboard;
 import com.variable.UtilityRes;
+import com.variable.UtilitySwitchActivity;
 import com.variable.UtilityToast;
 
 /**
@@ -26,7 +29,7 @@ import com.variable.UtilityToast;
 public class TestActivity extends BaseActivity implements ITestActivity {
     private final String TAG = TestActivity.class.getSimpleName();
 
-    private Button btnLoad, btnUpdate;
+    private Button btnLoad, btnUpdate, btnSpeech;
     private EditText etName, etPhone;
     private TestActivityPresenter testActivityPresenter;
 
@@ -39,6 +42,7 @@ public class TestActivity extends BaseActivity implements ITestActivity {
         etPhone = findViewById(R.id.editText2);
         btnLoad = findViewById(R.id.load_button);
         btnUpdate = findViewById(R.id.update_button);
+        btnSpeech = findViewById(R.id.speech_to_text);
 
         testActivityPresenter = new TestActivityPresenter(activity, this);
     }
@@ -99,6 +103,13 @@ public class TestActivity extends BaseActivity implements ITestActivity {
                 materialStyledDialog.show();
 
                 Logger.d("test bool: " + UtilityRes.getNewInstance().getBoolean(activity, R.bool.test_bool));
+            }
+        });
+
+        btnSpeech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UtilitySwitchActivity.getNewInstance().switchActivity(activity, Speech2TextActivity.class, true);
             }
         });
     }

@@ -25,4 +25,11 @@
     <string name="activity_test_dialog_content">activity_test_dialog_content</string>
     <string name="activity_test_dialog_pos_text">confirm</string>
     <string name="activity_test_dialog_neg_text">cancel</string>
+    <string name="activity_switch_speech">Switch To Speech</string>
+
+    <!-- Speech2TextActivity-->
+    <string name="activity_speech_text">Speech</string>
+    <string name="activity_speech_prompt">Say something...</string>
+    <string name="activity_speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="activity_click_btn">Click speech button...</string>
 </resources>

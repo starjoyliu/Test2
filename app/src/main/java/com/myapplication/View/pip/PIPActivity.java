@@ -41,7 +41,6 @@ public class PIPActivity extends BaseActivity implements View.OnClickListener, I
         utilityRes = UtilityRes.getNewInstance();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onStart() {
         super.onStart();

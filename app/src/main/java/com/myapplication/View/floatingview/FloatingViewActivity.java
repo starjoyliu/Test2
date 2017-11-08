@@ -39,7 +39,7 @@ public class FloatingViewActivity extends BaseActivity implements View.OnClickLi
         utilityToast = UtilityToast.getNewInstance();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
     @Override
     protected void onStart() {
         super.onStart();

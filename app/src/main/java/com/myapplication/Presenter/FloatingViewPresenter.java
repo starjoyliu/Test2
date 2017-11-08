@@ -19,7 +19,6 @@ import com.variable.UtilityRes;
  */
 
 public class FloatingViewPresenter {
-    private final int DRAW_OVERLAYS_API_LEVEL = android.os.Build.VERSION_CODES.M;
     private final int SYSTEM_ALERT_WINDOW_PERMISSION = 1001;
 
     private IFloatingViewActivity iFloatingViewActivity;
@@ -38,9 +37,8 @@ public class FloatingViewPresenter {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public void checkDrawOverlays() {
-        if (utilityPhone.API_LEVEL >= DRAW_OVERLAYS_API_LEVEL && !canDrawOverlays()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !canDrawOverlays()) {
             askPermission();
         }
     }
@@ -55,23 +53,27 @@ public class FloatingViewPresenter {
         activity.startActivityForResult(intent, SYSTEM_ALERT_WINDOW_PERMISSION);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public void triggerFloatingWindows(){
         //API<23直接開啟, 不用問權限
-        if (utilityPhone.API_LEVEL < DRAW_OVERLAYS_API_LEVEL) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             iFloatingViewActivity.triggerFloatingWindows();
-        } else if (canDrawOverlays()) {
-            //API>=23且已經開啟權限
-            iFloatingViewActivity.triggerFloatingWindows();
-        } else {
-            //要求權限
-            askPermission();
-            iFloatingViewActivity.showNeedAlertWindowsPermission(utilityRes.getString(activity, R.string.activity_need_alert_window_permission));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (canDrawOverlays()) {
+                //API>=23且已經開啟權限
+                iFloatingViewActivity.triggerFloatingWindows();
+            } else {
+                //要求權限
+                askPermission();
+                iFloatingViewActivity.showNeedAlertWindowsPermission(utilityRes.getString(activity, R.string.activity_need_alert_window_permission));
+            }
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public boolean canDrawOverlays(){
-        return Settings.canDrawOverlays(activity);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return Settings.canDrawOverlays(activity);
+        }else{
+            return false;
+        }
     }
 }

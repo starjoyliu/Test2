@@ -23,8 +23,6 @@ import com.variable.UtilityRes;
  */
 
 public class PIPPresenter {
-    private final int PIP_MODE_API_LEVEL = android.os.Build.VERSION_CODES.O;
-
     private IPIPActivity ipipActivity;
     private PIPModel pipModel;
     private Activity activity;
@@ -43,7 +41,6 @@ public class PIPPresenter {
     /**
      * 初始化
      */
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public void init(){
         checkAPILevel();
     }
@@ -53,7 +50,7 @@ public class PIPPresenter {
      * 檢查是否支援PIP Mode
      */
     private void checkAPILevel(){
-        if(utilityPhone.API_LEVEL>=PIP_MODE_API_LEVEL){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             ipipActivity.supportPIPMode();
         }else{
             ipipActivity.showNotSupportMsg(utilityRes.getString(activity, R.string.activity_not_support_pip));
@@ -64,11 +61,14 @@ public class PIPPresenter {
     /**
      * 驅動PIP mode
      */
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void triggerPIPMode(){
         try {
-            activity.enterPictureInPictureMode();
-            ipipActivity.triggerPIPModeSuccess(utilityRes.getString(activity, R.string.activity_trigger_pip_success));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                activity.enterPictureInPictureMode();
+                ipipActivity.triggerPIPModeSuccess(utilityRes.getString(activity, R.string.activity_trigger_pip_success));
+            }else{
+                ipipActivity.showNotSupportMsg(utilityRes.getString(activity, R.string.activity_not_support_pip));
+            }
         } catch (IllegalStateException e) {
             e.printStackTrace();
             ipipActivity.showNotSupportMsg(utilityRes.getString(activity, R.string.activity_not_support_pip));

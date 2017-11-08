@@ -19,7 +19,6 @@ import com.variable.UtilityRes;
  */
 
 public class FloatingViewPresenter {
-    private final int PIP_MODE_API_LEVEL = android.os.Build.VERSION_CODES.O;
     private final int DRAW_OVERLAYS_API_LEVEL = android.os.Build.VERSION_CODES.M;
     private final int SYSTEM_ALERT_WINDOW_PERMISSION = 1001;
 
@@ -41,7 +40,7 @@ public class FloatingViewPresenter {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void checkDrawOverlays() {
-        if (utilityPhone.API_LEVEL >= Build.VERSION_CODES.M && !canDrawOverlays()) {
+        if (utilityPhone.API_LEVEL >= DRAW_OVERLAYS_API_LEVEL && !canDrawOverlays()) {
             askPermission();
         }
     }
@@ -58,11 +57,14 @@ public class FloatingViewPresenter {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void triggerFloatingWindows(){
-        if (utilityPhone.API_LEVEL < Build.VERSION_CODES.M) {
+        //API<23直接開啟, 不用問權限
+        if (utilityPhone.API_LEVEL < DRAW_OVERLAYS_API_LEVEL) {
             iFloatingViewActivity.triggerFloatingWindows();
-        } else if (Settings.canDrawOverlays(activity)) {
+        } else if (canDrawOverlays()) {
+            //API>=23且已經開啟權限
             iFloatingViewActivity.triggerFloatingWindows();
         } else {
+            //要求權限
             askPermission();
             iFloatingViewActivity.showNeedAlertWindowsPermission(utilityRes.getString(activity, R.string.activity_need_alert_window_permission));
         }

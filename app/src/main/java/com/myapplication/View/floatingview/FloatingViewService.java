@@ -120,8 +120,6 @@ public class FloatingViewService extends Service implements View.OnClickListener
                 }
                 return false;
             }
-
-
         });
     }
 

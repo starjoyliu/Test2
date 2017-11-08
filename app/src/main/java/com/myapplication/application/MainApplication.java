@@ -46,7 +46,7 @@ public class MainApplication extends MultiDexApplication{
         /**
          * 取得 Phone 資訊
          */
-        UtilityPhone.getNewInstance().init();
+        UtilityPhone.getNewInstance().init(this);
     }
 
     @Override

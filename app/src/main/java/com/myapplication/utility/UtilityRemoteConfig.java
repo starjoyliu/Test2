@@ -10,6 +10,7 @@ import com.myapplication.R;
 
 /**
  * 搭配 IRemoteConfig 使用
+ * {@link IRemoteConfig}
  * Created by star on 2017/11/1.
  */
 public class UtilityRemoteConfig {

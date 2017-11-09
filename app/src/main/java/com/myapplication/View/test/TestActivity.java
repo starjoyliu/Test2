@@ -9,6 +9,8 @@ import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.log.Logger;
 import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
+import com.myapplication.View.HighlightOuterFrame.HighlightOuterFrameView;
+import com.myapplication.View.InteractiveAnimationView.InteractiveAnimationView;
 import com.myapplication.View.base.BaseActivity;
 import com.myapplication.View.floatingview.FloatingViewActivity;
 import com.myapplication.View.pip.PIPActivity;
@@ -28,7 +30,7 @@ import com.variable.UtilityUI;
 public class TestActivity extends BaseActivity implements ITestActivity, View.OnClickListener {
     private final String TAG = TestActivity.class.getSimpleName();
 
-    private Button btnLoad, btnUpdate, btnSpeech, btnPIP, btnFV;
+    private Button btnLoad, btnUpdate, btnSpeech, btnPIP, btnFV, btnHighlight, btnInteractive;
     private EditText etName, etPhone;
     private TestActivityPresenter testActivityPresenter;
     private UtilityUI utilityUI;
@@ -45,6 +47,8 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
         btnSpeech = findViewById(R.id.speech_to_text);
         btnPIP = findViewById(R.id.pip_btn);
         btnFV = findViewById(R.id.btnFV);
+        btnHighlight = findViewById(R.id.btnHighlight);
+        btnInteractive = findViewById(R.id.btnInteractive);
 
         testActivityPresenter = new TestActivityPresenter(activity, this);
         utilityUI = UtilityUI.getNewInstance();
@@ -58,6 +62,8 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
         btnSpeech.setOnClickListener(this);
         btnPIP.setOnClickListener(this);
         btnFV.setOnClickListener(this);
+        btnHighlight.setOnClickListener(this);
+        btnInteractive.setOnClickListener(this);
     }
 
     @Override
@@ -181,6 +187,12 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
                 break;
             case R.id.btnFV:
                 UtilitySwitchActivity.getNewInstance().switchActivity(activity, FloatingViewActivity.class, true);
+                break;
+            case R.id.btnHighlight:
+                UtilitySwitchActivity.getNewInstance().switchActivity(activity, HighlightOuterFrameView.class, true);
+                break;
+            case R.id.btnInteractive:
+                UtilitySwitchActivity.getNewInstance().switchActivity(activity, InteractiveAnimationView.class, true);
                 break;
             default:
                 Logger.v(TAG + " no match id");

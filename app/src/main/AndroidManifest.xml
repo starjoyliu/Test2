@@ -32,6 +32,8 @@
         </activity>
 
         <activity android:name=".View.test.TestActivity"></activity>
+        <activity android:name=".View.HighlightOuterFrame.HighlightOuterFrameView"></activity>
+        <activity android:name=".View.InteractiveAnimationView.InteractiveAnimationView"></activity>
         <activity android:name=".View.speech2text.Speech2TextActivity"></activity>
         <activity android:name=".View.pip.PIPActivity"
             android:resizeableActivity="true"

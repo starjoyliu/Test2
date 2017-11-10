@@ -105,12 +105,13 @@ public class FloatingViewService extends Service implements View.OnClickListener
                         params.y = initialY + (int) (event.getRawY() - initialTouchY);
                         mWindowManager.updateViewLayout(mFloatingView, params);
 
-                        //左右移動超過容忍值,
-                        if(Math.abs(initialX-params.x)>=TAP_THRESHOLD){
+                        //左右上下移動超過容忍值,
+                        if(Math.abs(initialX-params.x)>=TAP_THRESHOLD
+                                || Math.abs(initialY-params.y)>=TAP_THRESHOLD){
                             isTap = false;
                         }else{
                             if(!isTap){
-                                //已經左右移動過, 不觸發Tap
+                                //已經左右上下移動過, 不觸發Tap
                             }else{
                                 isTap = true;
                             }

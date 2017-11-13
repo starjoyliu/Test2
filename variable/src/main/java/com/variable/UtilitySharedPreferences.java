@@ -14,12 +14,12 @@ public class UtilitySharedPreferences {
 
     public UtilitySharedPreferences(){}
 
-    public static UtilitySharedPreferences getNewInstance(Activity activity) {
+    public static UtilitySharedPreferences getNewInstance(Context context) {
         if(u == null) {
             synchronized (UtilitySharedPreferences.class) {
                 if(u == null) {
                     u = new UtilitySharedPreferences();
-                    sharedPreferences = getSharedPreferences(activity);
+                    sharedPreferences = getSharedPreferences(context);
                 }
             }
         }

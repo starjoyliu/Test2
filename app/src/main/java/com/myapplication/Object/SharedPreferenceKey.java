@@ -5,5 +5,5 @@ package com.myapplication.Object;
  */
 
 public class SharedPreferenceKey {
-
+    public static final String ENCRYPT_P = "ENCRYPT_P";
 }

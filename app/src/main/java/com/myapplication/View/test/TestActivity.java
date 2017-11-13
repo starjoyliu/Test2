@@ -1,11 +1,17 @@
 package com.myapplication.View.test;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.log.Logger;
 import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
@@ -34,10 +40,13 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
     private EditText etName, etPhone;
     private TestActivityPresenter testActivityPresenter;
     private UtilityUI utilityUI;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        firebaseAuth = FirebaseAuth.getInstance();
+
         setContentView(R.layout.activity_test);
 
         etName = findViewById(R.id.editText);
@@ -57,6 +66,12 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
     @Override
     protected void onStart() {
         super.onStart();
+
+        //check if user is signed in (non-null) and update UI
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        updateUI(firebaseUser);
+        //sign up new users createAccount()
+
         btnLoad.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
         btnSpeech.setOnClickListener(this);
@@ -198,5 +213,71 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
                 Logger.v(TAG + " no match id");
                 break;
         }
+    }
+
+    // sign up new users
+    private void createAccount(String email, String password){
+        firebaseAuth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                            updateUI(firebaseUser);
+                        }else {
+                            //TODO show sign up error
+                            updateUI(null);
+                        }
+                    }
+                });
+
+
+    }
+
+    /**
+     * sign in
+     * @param email
+     * @param password
+     */
+    private void signIn(String email, String password){
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                            updateUI(firebaseUser);
+                        }else{
+                            //TODO show sign in error
+                            updateUI(null);
+                        }
+                    }
+                });
+    }
+
+    /**
+     * 更新畫面
+     * @param firebaseUser
+     */
+    private void updateUI(FirebaseUser firebaseUser) {
+        if(firebaseUser!=null){
+            switchToHome();
+        }else{
+            switchToSignUp();
+        }
+    }
+
+    /**
+     * 切換到首頁
+     */
+    private void switchToHome() {
+
+    }
+
+    /**
+     * 切換到註冊畫面
+     */
+    private void switchToSignUp() {
+
     }
 }

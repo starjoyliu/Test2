@@ -53,4 +53,24 @@
 
     <!-- InteractiveAnimationView-->
     <string name="activity_interactive_btn_push">Push</string>
+
+    <!-- LoginView-->
+    <string name="loginview_et_email_hint">email</string>
+    <string name="loginview_et_password_hint">password</string>
+    <string name="loginview_btn_login">login</string>
+    <string name="loginview_btn_sign_up">sign up</string>
+    <string name="loginview_msg_email_is_empty">email is empty</string>
+    <string name="loginview_msg_invalidation_email">invalidation email (including symbol "@")</string>
+    <string name="loginview_msg_password_is_empty">password is empty</string>
+    <string name="loginview_msg_invalidation_password">invalidation password (length at least 6)</string>
+    <string name="loginview_msg_login_success">Login Success</string>
+    <string name="loginview_msg_login_fail">Login Fail</string>
+
+    <!-- SignUpView-->
+    <string name="signup_et_email_hint">email</string>
+    <string name="signup_et_password_hint">password</string>
+    <string name="signup_btn_signup">signup</string>
+    <string name="signup_btn_back">back</string>
+    <string name="signup_msg_signup_success">Sign Up Success</string>
+    <string name="signup_msg_signup_fail">Sign Up Fail</string>
 </resources>

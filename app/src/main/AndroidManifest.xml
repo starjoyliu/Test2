@@ -24,11 +24,11 @@
         android:name=".application.MainApplication"
         tools:replace="android:icon">
         <activity android:name=".View.main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
 
         <activity android:name=".View.test.TestActivity"></activity>
@@ -44,6 +44,14 @@
             android:name=".View.floatingview.FloatingViewService"
             android:enabled="true"
             android:exported="false" />
+        <activity android:name=".View.login.LoginView">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".View.signup.SignUpView"></activity>
     </application>
 
 </manifest>

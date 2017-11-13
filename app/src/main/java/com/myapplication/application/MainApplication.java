@@ -8,9 +8,9 @@ import com.google.firebase.crash.FirebaseCrash;
 import com.log.LogLevel;
 import com.log.Logger;
 import com.myapplication.R;
-import com.orm.SugarContext;
 import com.myapplication.utility.skin.UtilitySkin;
-import com.myapplication.utility.skin.key.SkinMode;
+import com.orm.SugarContext;
+import com.variable.UtilityKeyStore;
 import com.variable.UtilityPhone;
 
 /**

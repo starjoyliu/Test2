@@ -1,6 +1,7 @@
 package com.variable;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.ColorRes;
@@ -15,6 +16,7 @@ import android.view.WindowManager;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.github.javiersantos.materialstyleddialogs.enums.Style;
+import com.variable.Custom.CustomDialog;
 
 /**
  * Created by star on 2017/11/2.
@@ -28,6 +30,7 @@ public class UtilityDialog {
     public static final @IntegerRes int DEFAULT_PADDING = -999;
     public static final int DEFAULT_ANIMATION = -999;
     public static final int DEFAULT_GRAVITY = -999;
+    public static final boolean DEFAULT_WIDTH_FULL_SCREEN = false;
 
     private volatile static UtilityDialog u;
 
@@ -199,7 +202,7 @@ public class UtilityDialog {
             , @DrawableRes Integer iconRes, @ColorRes int headerColor
             , View customView){
         return showCUSTOM(activity, title, content, iconRes, headerColor, customView
-        , DEFAULT_PADDING, DEFAULT_PADDING, DEFAULT_PADDING, DEFAULT_PADDING);
+                , DEFAULT_PADDING, DEFAULT_PADDING, DEFAULT_PADDING, DEFAULT_PADDING);
     }
 
     /**
@@ -305,31 +308,70 @@ public class UtilityDialog {
     }
 
     /**
-     * 建立一個自訂View, 代有animation
+     * 建立一個自訂View
      * @param activity
-     * @param title null is no title
      * @param customView
-     * @param animationSource {@value DEFAULT_ANIMATION} is no animation
-     */
-    /**
-     * 建立一個自訂View, 代有animation
-     * @param activity
-     * @param title null is no title
-     * @param customView
-     * @param animationSource {@value DEFAULT_ANIMATION} is no animation
-     * @param gravity {@value DEFAULT_GRAVITY} is center
      * @return
      */
-    public AlertDialog buildCustomAnimationDialog(Activity activity, String title, View customView
+    public Dialog buildCustomAnimationDialog(Activity activity
+            , View customView) {
+        return buildCustomAnimationDialog(activity, customView, DEFAULT_ANIMATION, DEFAULT_GRAVITY, DEFAULT_WIDTH_FULL_SCREEN);
+    }
+
+    /**
+     * 建立一個自訂View
+     * @param activity
+     * @param customView
+     * @param animationSource {@value DEFAULT_ANIMATION} 顯示動畫
+     * @param gravity {@value DEFAULT_GRAVITY} 動畫顯示位置
+     * @return
+     */
+    public Dialog buildCustomAnimationDialog(Activity activity
+            , View customView
             , int animationSource
             , int gravity) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        if(title!=null){
-            builder.setTitle(title);
-        }
-        builder.setView(customView);
+        return buildCustomAnimationDialog(activity, customView, animationSource, gravity, DEFAULT_WIDTH_FULL_SCREEN);
+    }
 
-        AlertDialog dialog = builder.create();
+    /**
+     * 建立一個自訂View
+     * @param activity
+     * @param customView
+     * @param isWidthFullScreen {@value DEFAULT_WIDTH_FULL_SCREEN} 寬度是否滿版
+     * @return
+     */
+    public Dialog buildCustomAnimationDialog(Activity activity
+            , View customView
+            , boolean isWidthFullScreen) {
+        return buildCustomAnimationDialog(activity, customView, DEFAULT_ANIMATION, DEFAULT_GRAVITY, isWidthFullScreen);
+    }
+
+    /**
+     * 建立一個自訂View
+     * @param activity
+     * @param customView
+     * @param animationSource {@value DEFAULT_ANIMATION} 顯示動畫
+     * @param gravity {@value DEFAULT_GRAVITY} 動畫顯示位置
+     * @param isWidthFullScreen {@value DEFAULT_WIDTH_FULL_SCREEN} 寬度是否滿版
+     * @return
+     */
+    public Dialog buildCustomAnimationDialog(Activity activity
+            , View customView
+            , int animationSource
+            , int gravity
+            , boolean isWidthFullScreen) {
+        Dialog dialog;
+        if(isWidthFullScreen){
+            dialog = new CustomDialog(activity);
+        }else{
+            dialog = new Dialog(activity);
+        }
+
+        dialog.setContentView(customView);
+
+        /**
+         * 設定動畫
+         */
         if(animationSource!=DEFAULT_ANIMATION){
             dialog.getWindow().getAttributes().windowAnimations = animationSource;
         }
@@ -343,6 +385,10 @@ public class UtilityDialog {
             wlp.gravity = gravity;
             wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
             window.setAttributes(wlp);
+        }
+        if(isWidthFullScreen){
+            wlp.width = WindowManager.LayoutParams.MATCH_PARENT;
+            wlp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         }
         return dialog;
     }

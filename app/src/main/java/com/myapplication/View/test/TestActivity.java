@@ -1,5 +1,6 @@
 package com.myapplication.View.test;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -198,13 +199,14 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
                 Logger.d("test bool: " + UtilityRes.getNewInstance().getBoolean(activity, R.bool.test_bool));
                 break;
             case R.id.speech_to_text:
-//                UtilitySwitchActivity.getNewInstance().switchActivity(activity, Speech2TextActivity.class, true);
+                UtilitySwitchActivity.getNewInstance().switchActivity(activity, Speech2TextActivity.class, true);
 
 //                View layout1 = utilityUI.getLayoutView(activity, R.layout.test_custom_view_dialog);
-//                AlertDialog dialog = UtilityDialog.getNewInstance().buildCustomAnimationDialog(
-//                        activity, null
+//                Dialog dialog = UtilityDialog.getNewInstance().buildCustomAnimationDialog(
+//                        activity
 //                        , layout1, R.style.DialogTheme_bottom_in_bottom_out
 //                        , Gravity.BOTTOM
+//                        , true
 //                );
 //                dialog.show();
 

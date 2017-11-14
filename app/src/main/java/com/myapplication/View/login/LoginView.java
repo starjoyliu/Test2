@@ -1,29 +1,17 @@
 package com.myapplication.View.login;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.log.Logger;
-import com.myapplication.Presenter.Speech2TextPresenter;
 import com.myapplication.Presenter.login.LoginPresenter;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
-import com.myapplication.View.signup.SignUpView;
 import com.myapplication.View.speech2text.Speech2TextActivity;
-import com.myapplication.View.test.TestActivity;
-import com.variable.UtilityKeyStore;
 import com.variable.UtilityKeyboard;
 import com.variable.UtilitySwitchActivity;
 import com.variable.UtilityToast;
-
-import java.util.ArrayList;
 
 /**
  * Created by star on 2017/11/10.

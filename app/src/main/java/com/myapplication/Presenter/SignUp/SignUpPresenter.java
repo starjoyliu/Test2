@@ -1,17 +1,15 @@
-package com.myapplication.Presenter.SignUpView;
+package com.myapplication.Presenter.SignUp;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.log.Logger;
-import com.myapplication.Model.SignUpModel.SignUpModel;
+import com.myapplication.Model.SignUp.SignUpModel;
 import com.myapplication.Object.CommonObject;
 import com.myapplication.R;
 import com.myapplication.View.login.LoginView;
-import com.myapplication.View.signup.ISignUpView;
-import com.myapplication.View.signup.SignUpView;
+import com.myapplication.View.SignUp.ISignUpView;
 import com.myapplication.View.test.TestActivity;
 import com.variable.UtilityKeyboard;
 import com.variable.UtilityRes;

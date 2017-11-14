@@ -1,4 +1,4 @@
-package com.myapplication.Model.SignUpModel;
+package com.myapplication.Model.SignUp;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -10,7 +10,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.myapplication.Object.SharedPreferenceKey;
-import com.myapplication.Presenter.SignUpView.ISignUpPresenter;
+import com.myapplication.Presenter.SignUp.ISignUpPresenter;
 import com.variable.UtilityKeyStore;
 import com.variable.UtilitySharedPreferences;
 

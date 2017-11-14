@@ -266,47 +266,6 @@ public class UtilityDialog {
         });
     }
 
-    public MaterialStyledDialog showCUSTOM(Activity activity, @StringRes int title, @StringRes int content
-            , @DrawableRes Integer iconRes, @ColorRes int headerColor
-            , View customView
-            , @IntegerRes int paddingLeft, @IntegerRes int paddingTop, @IntegerRes int paddingRight, @IntegerRes int paddingBottom
-            , int animationRes){
-
-        final MaterialStyledDialog.Builder dialog = new MaterialStyledDialog.Builder(activity);
-        dialog.setDescription(content);
-        dialog.setStyle(Style.HEADER_WITH_TITLE);
-
-        if (paddingLeft != DEFAULT_PADDING
-                ||paddingTop != DEFAULT_PADDING
-                ||paddingRight != DEFAULT_PADDING
-                ||paddingBottom != DEFAULT_PADDING){
-            dialog.setCustomView(customView, paddingLeft, paddingTop, paddingRight, paddingBottom);
-        }else{
-            dialog.setCustomView(customView);
-        }
-
-        if(title!=DEFAULT_TITLE_TEXT){
-            dialog.setTitle(title);
-        }
-
-        if(headerColor!=DEFAULT_HEADER_COLOR){
-            dialog.setHeaderColor(headerColor);
-        }
-
-        if(iconRes!=DEFAULT_ICON){
-            dialog.setStyle(Style.HEADER_WITH_ICON);
-            dialog.setIcon(iconRes);
-        }
-
-        if(animationRes!=DEFAULT_ANIMATION){
-            dialog.withDialogAnimation(true);
-        }
-
-        MaterialStyledDialog materialStyledDialog = dialog.build();
-        materialStyledDialog.getWindow().getAttributes().windowAnimations = animationRes;
-        return materialStyledDialog;
-    }
-
     /**
      * 建立一個自訂View
      * @param activity

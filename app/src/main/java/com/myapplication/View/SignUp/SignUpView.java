@@ -1,18 +1,14 @@
-package com.myapplication.View.signup;
+package com.myapplication.View.SignUp;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.myapplication.Presenter.SignUpView.SignUpPresenter;
-import com.myapplication.Presenter.login.LoginPresenter;
+import com.myapplication.Presenter.SignUp.SignUpPresenter;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
-import com.myapplication.View.login.LoginView;
 import com.myapplication.View.speech2text.Speech2TextActivity;
-import com.variable.UtilityKeyboard;
-import com.variable.UtilitySwitchActivity;
 import com.variable.UtilityToast;
 
 /**

@@ -53,7 +53,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.signup.SignUpView"></activity>
+        <activity android:name=".View.SignUp.SignUpView"></activity>
     </application>
 
 </manifest>

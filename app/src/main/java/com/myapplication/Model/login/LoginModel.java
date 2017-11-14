@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.myapplication.Object.SharedPreferenceKey;
 import com.myapplication.Presenter.login.ILoginPresenter;
+import com.variable.UtilityKeyStore;
 import com.variable.UtilityRes;
 import com.variable.UtilitySharedPreferences;
 import com.variable.UtilityToast;
@@ -24,6 +25,7 @@ public class LoginModel {
     private ILoginPresenter iLoginPresenter;
     private FirebaseAuth firebaseAuth;
     private UtilitySharedPreferences utilitySharedPreferences;
+    private UtilityKeyStore utilityKeyStore;
 
     public LoginModel(Activity activity, ILoginPresenter iLoginPresenter) {
         this.activity = activity;
@@ -31,9 +33,10 @@ public class LoginModel {
 
         firebaseAuth = FirebaseAuth.getInstance();
         utilitySharedPreferences = UtilitySharedPreferences.getNewInstance(activity);
+        utilityKeyStore = UtilityKeyStore.getNewInstance(activity);
     }
 
-    public void logIn(String email, String password) {
+    public void logIn(String email, final String password) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -41,6 +44,8 @@ public class LoginModel {
                         if(task.isSuccessful()){
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             if(TextUtils.isEmpty(user.getEmail())==false){
+                                String encrtpyP = utilityKeyStore.encrypt(password);
+                                utilitySharedPreferences.save(SharedPreferenceKey.ENCRYPT_P, encrtpyP);
                                 iLoginPresenter.onReceive("LOGIN_SUCCESS");
                             }else{
                                 iLoginPresenter.onReceive("LOGIN_FAIL");

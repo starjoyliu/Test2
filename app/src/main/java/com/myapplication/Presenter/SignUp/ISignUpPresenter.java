@@ -1,4 +1,4 @@
-package com.myapplication.Presenter.SignUpView;
+package com.myapplication.Presenter.SignUp;
 
 /**
  * Created by star on 2017/11/13.

@@ -11,7 +11,7 @@ import com.myapplication.Model.login.LoginModel;
 import com.myapplication.Object.CommonObject;
 import com.myapplication.R;
 import com.myapplication.View.login.ILoginView;
-import com.myapplication.View.signup.SignUpView;
+import com.myapplication.View.SignUp.SignUpView;
 import com.myapplication.View.test.TestActivity;
 import com.variable.UtilityKeyboard;
 import com.variable.UtilityRes;

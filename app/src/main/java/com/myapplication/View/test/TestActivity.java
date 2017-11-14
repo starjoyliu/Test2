@@ -202,7 +202,7 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
                 UtilitySwitchActivity.getNewInstance().switchActivity(activity, Speech2TextActivity.class, true);
 
 //                View layout1 = utilityUI.getLayoutView(activity, R.layout.test_custom_view_dialog);
-//                Dialog dialog = UtilityDialog.getNewInstance().buildCustomAnimationDialog(
+//                Dialog dialog = UtilityDialog.getNewInstance().buildCustomDialog(
 //                        activity
 //                        , layout1, R.style.DialogTheme_bottom_in_bottom_out
 //                        , Gravity.BOTTOM

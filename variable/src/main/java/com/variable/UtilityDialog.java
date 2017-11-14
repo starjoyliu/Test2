@@ -313,9 +313,9 @@ public class UtilityDialog {
      * @param customView
      * @return
      */
-    public Dialog buildCustomAnimationDialog(Activity activity
+    public Dialog buildCustomDialog(Activity activity
             , View customView) {
-        return buildCustomAnimationDialog(activity, customView, DEFAULT_ANIMATION, DEFAULT_GRAVITY, DEFAULT_WIDTH_FULL_SCREEN);
+        return buildCustomDialog(activity, customView, DEFAULT_ANIMATION, DEFAULT_GRAVITY, DEFAULT_WIDTH_FULL_SCREEN);
     }
 
     /**
@@ -326,11 +326,11 @@ public class UtilityDialog {
      * @param gravity {@value DEFAULT_GRAVITY} 動畫顯示位置
      * @return
      */
-    public Dialog buildCustomAnimationDialog(Activity activity
+    public Dialog buildCustomDialog(Activity activity
             , View customView
             , int animationSource
             , int gravity) {
-        return buildCustomAnimationDialog(activity, customView, animationSource, gravity, DEFAULT_WIDTH_FULL_SCREEN);
+        return buildCustomDialog(activity, customView, animationSource, gravity, DEFAULT_WIDTH_FULL_SCREEN);
     }
 
     /**
@@ -340,10 +340,10 @@ public class UtilityDialog {
      * @param isWidthFullScreen {@value DEFAULT_WIDTH_FULL_SCREEN} 寬度是否滿版
      * @return
      */
-    public Dialog buildCustomAnimationDialog(Activity activity
+    public Dialog buildCustomDialog(Activity activity
             , View customView
             , boolean isWidthFullScreen) {
-        return buildCustomAnimationDialog(activity, customView, DEFAULT_ANIMATION, DEFAULT_GRAVITY, isWidthFullScreen);
+        return buildCustomDialog(activity, customView, DEFAULT_ANIMATION, DEFAULT_GRAVITY, isWidthFullScreen);
     }
 
     /**
@@ -355,7 +355,7 @@ public class UtilityDialog {
      * @param isWidthFullScreen {@value DEFAULT_WIDTH_FULL_SCREEN} 寬度是否滿版
      * @return
      */
-    public Dialog buildCustomAnimationDialog(Activity activity
+    public Dialog buildCustomDialog(Activity activity
             , View customView
             , int animationSource
             , int gravity

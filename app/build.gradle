@@ -42,13 +42,29 @@ android {
         }
 
     }
+
     dexOptions {
         preDexLibraries true
     }
+
     aaptOptions {
         cruncherEnabled = false
         useNewCruncher = false
     }
+
+//    flavorDimensions "minSdkVersion"
+//    productFlavors {
+//        // Build variant with minSdk 16 to include Facebook and FirebaseUI libraries.
+//        minSdkJellybean {
+//            dimension "minSdkVersion"
+//            minSdkVersion 16
+//        }
+//        // Build variant with minSdk 14, excludes Facebook and FirebaseUI libraries.
+//        minSdkIcs {
+//            dimension "minSdkVersion"
+//            minSdkVersion 14
+//        }
+//    }
 }
 
 def getJenkinsBuildNumber() {

@@ -50,6 +50,7 @@ public class SignUpModel {
                     }
                 }else{
                     iSignUpPresenter.onReceive("SIGN_UP_FAIL");
+                    iSignUpPresenter.onReceive(task.getException().getMessage());
                 }
             }
         });

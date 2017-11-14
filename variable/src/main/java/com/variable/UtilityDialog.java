@@ -1,11 +1,16 @@
 package com.variable;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntegerRes;
 import android.support.annotation.StringRes;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
@@ -16,11 +21,13 @@ import com.github.javiersantos.materialstyleddialogs.enums.Style;
  */
 
 public class UtilityDialog {
-    public final @DrawableRes Integer DEFAULT_ICON = -999;
-    public final @ColorRes int DEFAULT_HEADER_COLOR = -999;
-    public final @StringRes int DEFAULT_NEG_TEXT = -999;
-    public final @StringRes int DEFAULT_TITLE_TEXT = -999;
-    public final @IntegerRes int DEFAULT_PADDING = -999;
+    public static final @DrawableRes Integer DEFAULT_ICON = -999;
+    public static final @ColorRes int DEFAULT_HEADER_COLOR = -999;
+    public static final @StringRes int DEFAULT_NEG_TEXT = -999;
+    public static final @StringRes int DEFAULT_TITLE_TEXT = -999;
+    public static final @IntegerRes int DEFAULT_PADDING = -999;
+    public static final int DEFAULT_ANIMATION = -999;
+    public static final int DEFAULT_GRAVITY = -999;
 
     private volatile static UtilityDialog u;
 
@@ -254,5 +261,89 @@ public class UtilityDialog {
                 dialog.show();
             }
         });
+    }
+
+    public MaterialStyledDialog showCUSTOM(Activity activity, @StringRes int title, @StringRes int content
+            , @DrawableRes Integer iconRes, @ColorRes int headerColor
+            , View customView
+            , @IntegerRes int paddingLeft, @IntegerRes int paddingTop, @IntegerRes int paddingRight, @IntegerRes int paddingBottom
+            , int animationRes){
+
+        final MaterialStyledDialog.Builder dialog = new MaterialStyledDialog.Builder(activity);
+        dialog.setDescription(content);
+        dialog.setStyle(Style.HEADER_WITH_TITLE);
+
+        if (paddingLeft != DEFAULT_PADDING
+                ||paddingTop != DEFAULT_PADDING
+                ||paddingRight != DEFAULT_PADDING
+                ||paddingBottom != DEFAULT_PADDING){
+            dialog.setCustomView(customView, paddingLeft, paddingTop, paddingRight, paddingBottom);
+        }else{
+            dialog.setCustomView(customView);
+        }
+
+        if(title!=DEFAULT_TITLE_TEXT){
+            dialog.setTitle(title);
+        }
+
+        if(headerColor!=DEFAULT_HEADER_COLOR){
+            dialog.setHeaderColor(headerColor);
+        }
+
+        if(iconRes!=DEFAULT_ICON){
+            dialog.setStyle(Style.HEADER_WITH_ICON);
+            dialog.setIcon(iconRes);
+        }
+
+        if(animationRes!=DEFAULT_ANIMATION){
+            dialog.withDialogAnimation(true);
+        }
+
+        MaterialStyledDialog materialStyledDialog = dialog.build();
+        materialStyledDialog.getWindow().getAttributes().windowAnimations = animationRes;
+        return materialStyledDialog;
+    }
+
+    /**
+     * 建立一個自訂View, 代有animation
+     * @param activity
+     * @param title null is no title
+     * @param customView
+     * @param animationSource {@value DEFAULT_ANIMATION} is no animation
+     */
+    /**
+     * 建立一個自訂View, 代有animation
+     * @param activity
+     * @param title null is no title
+     * @param customView
+     * @param animationSource {@value DEFAULT_ANIMATION} is no animation
+     * @param gravity {@value DEFAULT_GRAVITY} is center
+     * @return
+     */
+    public AlertDialog buildCustomAnimationDialog(Activity activity, String title, View customView
+            , int animationSource
+            , int gravity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        if(title!=null){
+            builder.setTitle(title);
+        }
+        builder.setView(customView);
+
+        AlertDialog dialog = builder.create();
+        if(animationSource!=DEFAULT_ANIMATION){
+            dialog.getWindow().getAttributes().windowAnimations = animationSource;
+        }
+
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+        /**
+         * dialog靠的位置
+         */
+        if(gravity!=DEFAULT_GRAVITY){
+            wlp.gravity = gravity;
+            wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+            window.setAttributes(wlp);
+        }
+        return dialog;
     }
 }

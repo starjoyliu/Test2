@@ -78,7 +78,7 @@ public class SignUpPresenter implements ISignUpPresenter{
         }else if(msg.equals("SIGN_UP_FAIL")){
             iSignUpView.showMessage(utilityRes.getString(activity, R.string.signup_msg_signup_fail));
         }else{
-            Logger.e("沒有匹配的msg");
+            iSignUpView.showMessage(msg);
         }
     }
 }

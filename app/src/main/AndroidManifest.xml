@@ -13,6 +13,8 @@
     <!-- Permission 設定-->
     <!-- Alert Window-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 網路權限-->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"

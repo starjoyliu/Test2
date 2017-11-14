@@ -1,7 +1,10 @@
 package com.myapplication.View.test;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -195,7 +198,16 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
                 Logger.d("test bool: " + UtilityRes.getNewInstance().getBoolean(activity, R.bool.test_bool));
                 break;
             case R.id.speech_to_text:
-                UtilitySwitchActivity.getNewInstance().switchActivity(activity, Speech2TextActivity.class, true);
+//                UtilitySwitchActivity.getNewInstance().switchActivity(activity, Speech2TextActivity.class, true);
+
+//                View layout1 = utilityUI.getLayoutView(activity, R.layout.test_custom_view_dialog);
+//                AlertDialog dialog = UtilityDialog.getNewInstance().buildCustomAnimationDialog(
+//                        activity, null
+//                        , layout1, R.style.DialogTheme_bottom_in_bottom_out
+//                        , Gravity.BOTTOM
+//                );
+//                dialog.show();
+
                 break;
             case R.id.pip_btn:
                 UtilitySwitchActivity.getNewInstance().switchActivity(activity, PIPActivity.class, true);

@@ -12,6 +12,10 @@
     <bool name="debug_open">true</bool>
     <!-- 色碼模式-->
     <string name="skin_mode">NORMAL_SKIN</string>
+    <!-- FB開發ID-->
+    <string name="facebook_app_id">1971191289785897</string>
+    <string name="fb_login_protocol_scheme">fb1971191289785897</string>
+
 
     <!-- TestActivity.class-->
     <string name="activity_et_name">Input your name...</string>
@@ -73,4 +77,7 @@
     <string name="signup_btn_back">back</string>
     <string name="signup_msg_signup_success">Sign Up Success</string>
     <string name="signup_msg_signup_fail">Sign Up Fail</string>
+
+    <!-- BaseSignUpActivity-->
+    <string name="base_sign_up_loading">Loading</string>
 </resources>

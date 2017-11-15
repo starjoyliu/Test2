@@ -63,12 +63,32 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/icon_sign_in"
+        android:layout_height="@dimen/icon_sign_in"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/icon_fb"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginview_btn_login"/>
+
+    <Button
+        android:id="@+id/line_login_button"
+        android:layout_width="@dimen/icon_sign_in"
+        android:layout_height="@dimen/icon_sign_in"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_select_line"
+        app:layout_constraintStart_toEndOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/loginview_btn_login" />
+
+    <Button
+        android:id="@+id/instagram_login_button"
+        android:layout_width="@dimen/icon_sign_in"
+        android:layout_height="@dimen/icon_sign_in"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/icon_instagram"
+        app:layout_constraintStart_toEndOf="@+id/line_login_button"
+        app:layout_constraintTop_toBottomOf="@+id/loginview_btn_login" />
 </android.support.constraint.ConstraintLayout>

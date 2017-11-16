@@ -15,13 +15,19 @@
     <!-- FB開發ID-->
     <string name="facebook_app_id">1971191289785897</string>
     <string name="fb_login_protocol_scheme">fb1971191289785897</string>
+    <string name="fb_callback_url"></string>
     <!-- LINE開發ID-->
     <string name="line_channel_id">1546578124</string>
     <string name="line_channel_secret">2ee81f8e473f1035e9b6e8dbcf1cb837</string>
+    <string name="line_callback_url"></string>
     <!-- Instagram開發ID-->
     <string name="instgram_client_id">b5439fea6da94c42b46f904eaf1de91f</string>
     <string name="instgram_client_secret">23966a0bd0d44213ae006de232e9979a</string>
     <string name="instgram_callback_url">https://instagram.com/</string>
+    <!-- Twitter開發ID-->
+    <string name="twitter_consumer_key">JkepLzU9OHlfaQRfURhFKWy8L</string>
+    <string name="twitter_consumer_secret">QIzlljf3F3S5ltTgZlC3owz2grZzLghbJ5dBtma7D4LZ4j12HV</string>
+    <string name="twitter_callback_url">http://placeholder.com</string>
     
     <!-- TestActivity.class-->
     <string name="activity_et_name">Input your name...</string>

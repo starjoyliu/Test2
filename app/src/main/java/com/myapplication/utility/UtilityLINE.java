@@ -5,7 +5,9 @@ import android.app.Activity;
 import com.arasthel.asyncjob.AsyncJob;
 import com.linecorp.linesdk.api.LineApiClient;
 import com.linecorp.linesdk.api.LineApiClientBuilder;
+import com.myapplication.Object.SharedPreferenceKey;
 import com.variable.UtilityAsync;
+import com.variable.UtilitySharedPreferences;
 
 /**
  * Created by star on 2017/11/15.
@@ -13,6 +15,15 @@ import com.variable.UtilityAsync;
 
 public class UtilityLINE {
     private static LineApiClient lineApiClient;
+    public static final String LINE_ACCESS_TOKEN = "LINE_ACCESS_TOKEN";
+    public static final String LINE_DISPLAY_NAME = "LINE_DISPLAY_NAME";
+    public static final String LINE_STATUS_MESSAGE = "LINE_STATUS_MESSAGE";
+    public static final String LINE_USER_ID = "LINE_USER_ID";
+    public static final String LINE_PIC_URL = "LINE_PIC_URL";
+    public static final String LINE_EXPIRE_TIME = "LINE_EXPIRE_TIME";
+    public static final String LINE_REFRESH_ACCESS_TOKEN = "LINE_REFRESH_ACCESS_TOKEN";
+    public static final String LINE_VERIFY_TOKEN = "LINE_VERIFY_TOKEN";
+    private static UtilitySharedPreferences sharedPreferences;
 
     private volatile static UtilityLINE u;
 
@@ -33,6 +44,17 @@ public class UtilityLINE {
                             LineApiClientBuilder apiClientBuilder = new LineApiClientBuilder(activity
                                     , channelID);
                             lineApiClient = apiClientBuilder.build();
+
+                            sharedPreferences = UtilitySharedPreferences.getNewInstance(activity);
+                            sharedPreferences.save(LINE_ACCESS_TOKEN, getCurrentAccessToken());
+                            sharedPreferences.save(LINE_REFRESH_ACCESS_TOKEN, getRefreshAccessToken());
+                            sharedPreferences.save(LINE_VERIFY_TOKEN, getVerifyToken());
+                            sharedPreferences.save(LINE_EXPIRE_TIME, getExpiresInMillis());
+                            sharedPreferences.save(LINE_DISPLAY_NAME, getDisplayName());
+                            sharedPreferences.save(LINE_STATUS_MESSAGE, getStatusMessage());
+                            sharedPreferences.save(LINE_USER_ID, getUserId());
+                            sharedPreferences.save(LINE_PIC_URL, getPictureUrl());
+
                             if(iline!=null){
                                 iline.onGetLineApiClientFinish();
                             }
@@ -48,33 +70,36 @@ public class UtilityLINE {
         return lineApiClient;
     }
 
-    public String getDisplayName(){
-        return lineApiClient.getProfile().getResponseData().getDisplayName();
+    public static String getDisplayName(){
+        return sharedPreferences.loadString(LINE_DISPLAY_NAME, null);
     }
 
-    public String getStatusMessage(){
-        return lineApiClient.getProfile().getResponseData().getStatusMessage();
+    public static String getStatusMessage(){
+        return sharedPreferences.loadString(LINE_STATUS_MESSAGE, null);
     }
 
-    public String getUserId(){
-        return lineApiClient.getProfile().getResponseData().getUserId();
+    public static String getUserId(){
+        return sharedPreferences.loadString(LINE_USER_ID, null);
     }
 
-    public String getCurrentAccessToken(){
-        lineApiClient.refreshAccessToken().getResponseData().getAccessToken();
-        return lineApiClient.getCurrentAccessToken().getResponseData().getAccessToken();
+    public static String getCurrentAccessToken(){
+        return sharedPreferences.loadString(LINE_ACCESS_TOKEN, null);
     }
 
-    public String refreshAccessToken(){
-        return lineApiClient.refreshAccessToken().getResponseData().getAccessToken();
+    public static String getRefreshAccessToken(){
+        return sharedPreferences.loadString(LINE_REFRESH_ACCESS_TOKEN, null);
     }
 
-    public String verifyToken(){
-        return lineApiClient.verifyToken().getResponseData().getAccessToken().getAccessToken();
+    public static String getVerifyToken(){
+        return sharedPreferences.loadString(LINE_VERIFY_TOKEN, null);
     }
 
-    public long getExpiresInMillis(){
-        return lineApiClient.getCurrentAccessToken().getResponseData().getExpiresInMillis();
+    public static long getExpiresInMillis(){
+        return sharedPreferences.loadLong(LINE_EXPIRE_TIME, -1);
+    }
+
+    public static String getPictureUrl(){
+        return sharedPreferences.loadString(LINE_PIC_URL, null);
     }
 
     public interface ILINE {

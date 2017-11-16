@@ -14,13 +14,20 @@ import com.facebook.login.LoginResult;
 import com.linecorp.linesdk.auth.LineLoginApi;
 import com.linecorp.linesdk.auth.LineLoginResult;
 import com.log.Logger;
-import com.myapplication.Object.SharedPreferenceKey;
 import com.myapplication.Presenter.login.LoginPresenter;
 import com.myapplication.R;
 import com.myapplication.View.base.BaseActivity;
 import com.myapplication.View.speech2text.Speech2TextActivity;
 import com.myapplication.utility.UtilityLINE;
-import com.variable.Object.Instagram.InstagramApp;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterAuthToken;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
+import com.twitter.sdk.android.core.identity.TwitterAuthClient;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 import com.variable.UtilityInstagram;
 import com.variable.UtilityKeyboard;
 import com.variable.UtilityRes;
@@ -39,11 +46,12 @@ public class LoginView extends BaseActivity implements ILoginView
         , UtilityInstagram.IInstagram{
     private final String TAG = Speech2TextActivity.class.getSimpleName();
     private static final int LINE_REQUEST_CODE = 1006;
-    private InstagramApp instagramApp;
 
     private LoginPresenter loginPresenter;
     private EditText etEmail, etPassword;
-    private Button btnLogin, btnSignUp, loginFBButton, loginLineButton, loginInstagramButton;
+    private Button btnLogin, btnSignUp, loginFBButton
+            , loginLineButton, loginInstagramButton;
+    private TwitterLoginButton loginTwitterButton;
     private CallbackManager callbackManagerFB;
 
     private UtilityKeyboard utilityKeyboard;
@@ -58,17 +66,24 @@ public class LoginView extends BaseActivity implements ILoginView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // FB Callback manager
-        callbackManagerFB = CallbackManager.Factory.create();
-
         etEmail = findViewById(R.id.editText4);
         etPassword = findViewById(R.id.editText5);
         btnLogin = findViewById(R.id.loginview_btn_login);
         btnSignUp = findViewById(R.id.loginview_btn_sign_up);
+
+        // FB Callback manager
+        callbackManagerFB = CallbackManager.Factory.create();
         loginFBButton = findViewById(R.id.login_button);
         loginFBButton.setBackgroundResource(R.drawable.icon_fb);
+
+        // LINE
         loginLineButton = findViewById(R.id.line_login_button);
+
+        // Instagram
         loginInstagramButton = findViewById(R.id.instagram_login_button);
+
+        // Twitter
+        loginTwitterButton = findViewById(R.id.twitter_login_button);
 
         loginPresenter = new LoginPresenter(activity, this);
         utilityKeyboard = UtilityKeyboard.getNewInstance();
@@ -86,6 +101,8 @@ public class LoginView extends BaseActivity implements ILoginView
         super.onStart();
         btnLogin.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
+
+        //FB
         loginFBButton.setOnClickListener(this);
         // FB Callback registration
         LoginManager.getInstance().registerCallback(callbackManagerFB, new FacebookCallback<LoginResult>() {
@@ -104,8 +121,48 @@ public class LoginView extends BaseActivity implements ILoginView
                 // App code
             }
         });
+
+        //LINE
         loginLineButton.setOnClickListener(this);
+
+        //Instagram
         loginInstagramButton.setOnClickListener(this);
+
+        //Twitter
+        loginTwitterButton.setCallback(new Callback<TwitterSession>() {
+            @Override
+            public void success(Result<TwitterSession> result) {
+                // Do something with result, which provides a TwitterSession for making API calls
+                TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
+                TwitterAuthToken authToken = session.getAuthToken();
+                String token = authToken.token;
+                String secret = authToken.secret;
+
+                Logger.d("token: "+token);
+                Logger.d("secret: "+secret);
+
+                TwitterAuthClient authClient = new TwitterAuthClient();
+                authClient.requestEmail(session, new Callback<String>() {
+                    @Override
+                    public void success(Result<String> result) {
+                        // Do something with the result, which provides the email address
+                        Logger.d("email: "+ result.data);
+                    }
+
+                    @Override
+                    public void failure(TwitterException exception) {
+                        // Do something on failure
+                        utilityToast.show(activity, exception.getMessage());
+                    }
+                });
+            }
+
+            @Override
+            public void failure(TwitterException exception) {
+                // Do something on failure
+                utilityToast.show(activity, exception.getMessage());
+            }
+        });
 
         loginPresenter.login();
     }
@@ -148,8 +205,12 @@ public class LoginView extends BaseActivity implements ILoginView
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // FB
         callbackManagerFB.onActivityResult(requestCode, resultCode, data);
+        // Twitter Pass the activity result to the login button.
+        loginTwitterButton.onActivityResult(requestCode, resultCode, data);
 
+        // LINE
         if(requestCode == LINE_REQUEST_CODE){
             LineLoginResult result = LineLoginApi.getLoginResultFromIntent(data);
             switch (result.getResponseCode()) {
@@ -162,13 +223,6 @@ public class LoginView extends BaseActivity implements ILoginView
                     Logger.d(result.getLineProfile().getStatusMessage());
                     Logger.d(result.getLineProfile().getUserId());
                     Logger.d(result.getLineProfile().getPictureUrl().toString());
-
-                    sharedpreferences.save(SharedPreferenceKey.LINE_ACCESS_TOKEN, accessToken);
-                    sharedpreferences.save(SharedPreferenceKey.LINE_EXPIRE_TIME, result.getLineCredential().getAccessToken().getExpiresInMillis());
-                    sharedpreferences.save(SharedPreferenceKey.LINE_DISPLAY_NAME, result.getLineProfile().getDisplayName());
-                    sharedpreferences.save(SharedPreferenceKey.LINE_STATUS_MESSAGE, result.getLineProfile().getStatusMessage());
-                    sharedpreferences.save(SharedPreferenceKey.LINE_USER_ID, result.getLineProfile().getUserId());
-                    sharedpreferences.save(SharedPreferenceKey.LINE_PIC_URL, result.getLineProfile().getPictureUrl().toString());
                     break;
                 case CANCEL:
                     // Login canceled by user
@@ -178,6 +232,7 @@ public class LoginView extends BaseActivity implements ILoginView
                     // Login canceled due to other error
                     Logger.e("ERROR: Login FAILED!");
                     Logger.e("ERROR: " + result.getErrorData().toString());
+                    break;
             }
         }
     }
@@ -235,7 +290,7 @@ public class LoginView extends BaseActivity implements ILoginView
 
     @Override
     public void onGetLineApiClientFinish() {
-        Logger.d(utilityLINE.getLineApiClient().getProfile().getResponseData().getDisplayName());
+        Logger.d(utilityLINE.getDisplayName());
     }
 
     @Override

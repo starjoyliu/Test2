@@ -8,8 +8,10 @@ import com.google.firebase.crash.FirebaseCrash;
 import com.log.LogLevel;
 import com.log.Logger;
 import com.myapplication.R;
+import com.myapplication.utility.UtilityTwitter;
 import com.myapplication.utility.skin.UtilitySkin;
 import com.orm.SugarContext;
+import com.twitter.sdk.android.core.Twitter;
 import com.variable.UtilityKeyStore;
 import com.variable.UtilityPhone;
 
@@ -47,6 +49,13 @@ public class MainApplication extends MultiDexApplication{
          * 取得 Phone 資訊
          */
         UtilityPhone.getNewInstance().init(this);
+        /**
+         * Init Twitter
+         */
+        UtilityTwitter.getNewInstance(this
+                , getString(R.string.twitter_consumer_key)
+                , getString(R.string.twitter_consumer_secret)
+                , getString(R.string.twitter_callback_url));
     }
 
     @Override

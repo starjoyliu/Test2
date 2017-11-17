@@ -6,4 +6,14 @@ package com.myapplication.Presenter.login;
 
 public interface ILoginPresenter {
     void onReceive(String login_success);
+
+    void TwitterRequestEmailFailure(String exception);
+
+    void TwitterFail(String exception);
+
+    void TwitterSuccess();
+
+    void FBSuccess();
+
+    void FBFail(String message);
 }

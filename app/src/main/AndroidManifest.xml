@@ -68,7 +68,7 @@
 
         <meta-data
             android:name="jp.line.sdk.ChannelId"
-            android:value="Channel ID" />
+            android:value="@string/line_channel_id" />
         <meta-data
             android:name="jp.line.sdk.AuthScheme"
             android:value="line.Channel ID" />

@@ -81,6 +81,8 @@
     <string name="loginview_msg_invalidation_password">invalidation password (length at least 6)</string>
     <string name="loginview_msg_login_success">Login Success</string>
     <string name="loginview_msg_login_fail">Login Fail</string>
+    <string name="twitter_success">twitter login success</string>
+    <string name="instagram_success">Instagram login success</string>
 
     <!-- SignUpView-->
     <string name="signup_et_email_hint">email</string>

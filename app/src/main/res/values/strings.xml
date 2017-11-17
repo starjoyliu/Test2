@@ -47,6 +47,7 @@
     <string name="activity_switch_floating_view">Switch To FloatingView</string>
     <string name="activity_switch_highlight_view">Switch To Highlight</string>
     <string name="activity_switch_Interactive_view">Switch To Interactive</string>
+    <string name="activity_switch_share_view">Switch To Share</string>
 
     <!-- Speech2TextActivity-->
     <string name="activity_speech_text">Speech</string>
@@ -94,4 +95,11 @@
 
     <!-- BaseSignUpActivity-->
     <string name="base_sign_up_loading">Loading</string>
+
+    <!-- ShareView-->
+    <string name="share_view_btn_google">Google+</string>
+    <string name="share_view_btn_FB">Facebook</string>
+    <string name="share_view_btn_twitter">twitter</string>
+    <string name="share_view_btn_wechat">WeChat</string>
+    <string name="share_view_btn_line">LINE</string>
 </resources>

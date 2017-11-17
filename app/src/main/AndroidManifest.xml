@@ -75,13 +75,19 @@
 
         <activity android:name=".View.main.MainActivity">
             <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
 
-        <activity android:name=".View.test.TestActivity"></activity>
+        <activity android:name=".View.test.TestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".View.HighlightOuterFrame.HighlightOuterFrameView"></activity>
         <activity android:name=".View.InteractiveAnimationView.InteractiveAnimationView"></activity>
         <activity android:name=".View.speech2text.Speech2TextActivity"></activity>
@@ -95,20 +101,23 @@
             android:enabled="true"
             android:exported="false" />
         <activity android:name=".View.login.LoginView">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".View.SignUp.SignUpView"></activity>
         <activity android:name=".View.AccountTest.GoogleSignInActivity">
             <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
+        <activity android:name=".View.ShareView.ShareView"></activity>
+
+        <!-- twitter receive-->
     </application>
 
 </manifest>

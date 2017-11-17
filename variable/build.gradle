@@ -30,13 +30,25 @@ dependencies {
     api 'org.greenrobot:eventbus:3.1.0-RC'
     api 'com.arasthel:asyncjob-library:1.0.3'
     api 'com.github.javiersantos:MaterialStyledDialogs:2.1'
+    api 'com.squareup.okhttp:okhttp:2.0.0'
+    api 'com.google.code.gson:gson:2.2.4'
+    api 'com.squareup.picasso:picasso:2.3.2'
     /**
      * implementation 上層無法直接呼叫
      */
     implementation 'com.muddzdev:styleabletoast:1.0.9'
     implementation 'com.daimajia.easing:library:2.0@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
-    api 'com.squareup.okhttp:okhttp:2.0.0'
-    api 'com.google.code.gson:gson:2.2.4'
-    api 'com.squareup.picasso:picasso:2.3.2'
+    implementation 'com.google.android.gms:play-services-plus:11.6.0'
+    /**
+     * FB SDK
+     */
+    implementation 'com.facebook.android:facebook-share:[4,5)'
+    /**
+     * Twitter Android SDK
+     */
+    implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
+    implementation 'com.twitter.sdk.android:tweet-ui:3.1.1'
+    implementation 'com.twitter.sdk.android:tweet-composer:3.1.1'
+    implementation 'com.twitter.sdk.android:twitter-mopub:3.1.1'
 }

@@ -21,6 +21,7 @@ import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
 import com.myapplication.View.HighlightOuterFrame.HighlightOuterFrameView;
 import com.myapplication.View.InteractiveAnimationView.InteractiveAnimationView;
+import com.myapplication.View.ShareView.ShareView;
 import com.myapplication.View.base.BaseActivity;
 import com.myapplication.View.floatingview.FloatingViewActivity;
 import com.myapplication.View.pip.PIPActivity;
@@ -41,6 +42,7 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
     private final String TAG = TestActivity.class.getSimpleName();
 
     private Button btnLoad, btnUpdate, btnSpeech, btnPIP, btnFV, btnHighlight, btnInteractive;
+    private Button btnShare;
     private EditText etName, etPhone;
     private TestActivityPresenter testActivityPresenter;
     private UtilityUI utilityUI;
@@ -62,6 +64,7 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
         btnFV = findViewById(R.id.btnFV);
         btnHighlight = findViewById(R.id.btnHighlight);
         btnInteractive = findViewById(R.id.btnInteractive);
+        btnShare = findViewById(R.id.btnShare);
 
         testActivityPresenter = new TestActivityPresenter(activity, this);
         utilityUI = UtilityUI.getNewInstance();
@@ -83,6 +86,7 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
         btnFV.setOnClickListener(this);
         btnHighlight.setOnClickListener(this);
         btnInteractive.setOnClickListener(this);
+        btnShare.setOnClickListener(this);
     }
 
     @Override
@@ -222,6 +226,9 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
                 break;
             case R.id.btnInteractive:
                 UtilitySwitchActivity.getNewInstance().switchActivity(activity, InteractiveAnimationView.class, true);
+                break;
+            case R.id.btnShare:
+                UtilitySwitchActivity.getNewInstance().switchActivity(activity, ShareView.class, true);
                 break;
             default:
                 Logger.v(TAG + " no match id");

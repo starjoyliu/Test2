@@ -98,7 +98,6 @@
         android:layout_height="@dimen/icon_sign_in"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/icon_twitter"
         app:layout_constraintStart_toEndOf="@+id/instagram_login_button"
         app:layout_constraintTop_toBottomOf="@+id/loginview_btn_login" />
 </android.support.constraint.ConstraintLayout>

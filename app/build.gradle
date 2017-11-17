@@ -91,15 +91,8 @@ dependencies {
     implementation project(':variable')
     implementation 'com.github.satyan:sugar:1.5'
     implementation 'com.google.android.gms:play-services:11.6.0'
-    // facebook
-    implementation 'com.facebook.android:facebook-login:[4,5)'
     // LINE
     implementation(name:'line-sdk-4.0.6', ext:'aar')
-    // Twitter Android SDK
-    implementation 'com.twitter.sdk.android:twitter-core:3.1.1'
-    implementation 'com.twitter.sdk.android:tweet-ui:3.1.1'
-    implementation 'com.twitter.sdk.android:tweet-composer:3.1.1'
-    implementation 'com.twitter.sdk.android:twitter-mopub:3.1.1'
 }
 
 

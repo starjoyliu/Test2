@@ -35,7 +35,7 @@ public class GoogleSignInActivity extends BaseSignUpActivity implements
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
-// [END declare_auth]
+    // [END declare_auth]
 
     private GoogleSignInClient mGoogleSignInClient;
     private TextView mStatusTextView;

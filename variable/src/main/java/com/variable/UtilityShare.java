@@ -20,6 +20,8 @@ import com.google.android.gms.plus.PlusShare;
 import com.log.Logger;
 import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,9 +67,13 @@ public class UtilityShare {
     }
 
     public void shareToFB(Activity activity, String title, String message){
+        if(TextUtils.isEmpty(title) && TextUtils.isEmpty(message)){
+            return;
+        }
+
         ShareLinkContent content = new ShareLinkContent.Builder()
-                .setQuote(title)
-                .setContentUrl(Uri.parse(message))
+                .setQuote(TextUtils.isEmpty(title)?"":title)
+                .setContentUrl(Uri.parse(TextUtils.isEmpty(message)?"":message))
                 .build();
         ShareDialog.show(activity, content);
 //        try{
@@ -84,6 +90,10 @@ public class UtilityShare {
     }
 
     public void shareToLine(Activity activity, String title, String message){
+        if(TextUtils.isEmpty(title) && TextUtils.isEmpty(message)){
+            return;
+        }
+
         try{
             //跳到指定APP的Activity
             ComponentName cn = new ComponentName(Line, Line_Chat);
@@ -91,7 +101,13 @@ public class UtilityShare {
             shareIntent.setType(TYPE_TEXT);
             shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             shareIntent.setPackage(Line);
-            shareIntent.putExtra(Intent.EXTRA_TEXT, title+"\n"+message);
+            if (TextUtils.isEmpty(title) && TextUtils.isEmpty(message)==false){
+                shareIntent.putExtra(Intent.EXTRA_TEXT, message);
+            }else if(TextUtils.isEmpty(title)==false && TextUtils.isEmpty(message)==false){
+                shareIntent.putExtra(Intent.EXTRA_TEXT, title+"\n"+message);
+            }else if(TextUtils.isEmpty(title)==false && TextUtils.isEmpty(message)){
+                shareIntent.putExtra(Intent.EXTRA_TEXT, title);
+            }
             shareIntent.setComponent(cn);
             activity.startActivity(shareIntent);
         }catch (Exception e){
@@ -101,20 +117,19 @@ public class UtilityShare {
     }
 
     public void shareToTwitter(Activity activity, String title, String message){
-        TweetComposer.Builder builder = new TweetComposer.Builder(activity)
-                .text(title+"\n"+message);
+        if(TextUtils.isEmpty(title) && TextUtils.isEmpty(message)){
+            return;
+        }
+
+        TweetComposer.Builder builder = new TweetComposer.Builder(activity);
+        if (TextUtils.isEmpty(title) && TextUtils.isEmpty(message)==false){
+            builder.text(message);
+        }else if(TextUtils.isEmpty(title)==false && TextUtils.isEmpty(message)==false){
+            builder.text(title+"\n"+message);
+        }else if(TextUtils.isEmpty(title)==false && TextUtils.isEmpty(message)){
+            builder.text(title);
+        }
         builder.show();
-//        try{
-//            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//            shareIntent.setType(TYPE_TEXT);
-//            shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            shareIntent.setClassName(Twitter,Twitter_Composer);
-//            shareIntent.putExtra(Intent.EXTRA_TEXT, message);
-//            activity.startActivity(shareIntent);
-//        }catch (Exception e){
-//            Logger.e(e.getMessage());
-//            download(activity, Twitter);
-//        }
     }
 
     public void shareToInstagram(Activity activity, String uri){
@@ -147,13 +162,23 @@ public class UtilityShare {
     }
 
     public void shareToWeChat(Activity activity, String title, String message){
+        if(TextUtils.isEmpty(title) && TextUtils.isEmpty(message)){
+            return;
+        }
+
         try{
             ComponentName cn = new ComponentName(WeChat, WeChat_Select);
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType(TYPE_TEXT);
             shareIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             shareIntent.setPackage(WeChat);
-            shareIntent.putExtra(Intent.EXTRA_TEXT, title+"\n"+message);
+            if (TextUtils.isEmpty(title) && TextUtils.isEmpty(message)==false){
+                shareIntent.putExtra(Intent.EXTRA_TEXT, message);
+            }else if(TextUtils.isEmpty(title)==false && TextUtils.isEmpty(message)==false){
+                shareIntent.putExtra(Intent.EXTRA_TEXT, title+"\n"+message);
+            }else if(TextUtils.isEmpty(title)==false && TextUtils.isEmpty(message)){
+                shareIntent.putExtra(Intent.EXTRA_TEXT, title);
+            }
             shareIntent.setComponent(cn);
             activity.startActivity(shareIntent);
         }catch (Exception e){
@@ -163,11 +188,15 @@ public class UtilityShare {
     }
 
     public void shareToGooglePlus(Activity activity, String title, String message){
+        if(TextUtils.isEmpty(title) && TextUtils.isEmpty(message)){
+            return;
+        }
+
         // Launch the Google+ share dialog with attribution to your app.
         Intent shareIntent = new PlusShare.Builder(activity)
                 .setType(TYPE_TEXT)
-                .setText(title)
-                .setContentUrl(Uri.parse(message))
+                .setText(TextUtils.isEmpty(title)?"":title)
+                .setContentUrl(Uri.parse(TextUtils.isEmpty(message)?"":message))
                 .getIntent();
         activity.startActivityForResult(shareIntent, 0);
     }
@@ -236,7 +265,7 @@ public class UtilityShare {
     }
 
     @Nullable
-    public static String getDefaultSmsAppPackageName(@NonNull Context context) {
+    private String getDefaultSmsAppPackageName(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
             return Telephony.Sms.getDefaultSmsPackage(context);
         else {

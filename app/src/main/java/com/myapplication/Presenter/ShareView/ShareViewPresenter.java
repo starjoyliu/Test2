@@ -43,4 +43,12 @@ public class ShareViewPresenter implements IShareViewPresenter{
     public void wechatShareClick(String title, String message){
         UtilityShare.getNewInstance().shareToWeChat(activity, title, message);
     }
+
+    public void whatsappShareClick(String title, String message){
+        UtilityShare.getNewInstance().shareToWhatsApp(activity, title, message);
+    }
+
+    public void weiboShareCliclk(String title, String message) {
+        UtilityShare.getNewInstance().shareToWeibo(activity, title, message);
+    }
 }

@@ -25,6 +25,8 @@ allprojects {
         flatDir {
             dirs 'libs'
         }
+        mavenCentral()
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
     }
 }
 

@@ -52,4 +52,5 @@ dependencies {
     implementation 'com.daimajia.easing:library:2.0@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     implementation 'com.google.android.gms:play-services-plus:11.6.0'
+    implementation 'com.infstory:weibo-android-sdk:3.1.4'
 }

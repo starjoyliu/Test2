@@ -106,7 +106,7 @@ public class ShareView extends BaseActivity implements View.OnClickListener
                 presenter.twitterShareClick("456", "https://www.google.com");
                 break;
             case R.id.share_view_btn_wechat:
-                presenter.wechatShareClick("123", "456");
+                presenter.weiboShareCliclk("123", "456");
                 break;
         }
     }

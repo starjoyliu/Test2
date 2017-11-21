@@ -60,7 +60,7 @@ public class UtilityShare {
     private final String Line_Chat = "jp.naver.line.android.activity.selectchat.SelectChatActivity";
     private final String WeChat = "com.tencent.mm";
     private final String WeChat_Select = "com.tencent.mm.ui.tools.ShareImgUI";
-    private final String Weibo = "com.sina.weibo";
+    private final String Weibo = "com.weico.international";
 
 
     private volatile static UtilityShare u;
@@ -388,6 +388,11 @@ public class UtilityShare {
         activity.startActivity(intent);
     }
 
+    /**
+     * get sms package name
+     * @param context
+     * @return
+     */
     @Nullable
     private String getDefaultSmsAppPackageName(@NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)

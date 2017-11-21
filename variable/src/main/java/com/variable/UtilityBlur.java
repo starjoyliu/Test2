@@ -9,9 +9,24 @@ import android.widget.ImageView;
 import jp.wasabeef.blurry.Blurry;
 
 /**
+ * Blur Options:
+ * * Radius
+ * * Down Sampling
+ * * Color Filter
+ * * Asynchronous Support
+ * * Animation (Overlay Only)
+ *
+ * sample code:
+ * * Blurry.with(context)
+ * * .radius(10)
+ * * .sampling(8)
+ * * .color(Color.argb(66, 255, 255, 0))
+ * * .async()
+ * * .animate(500)
+ * * .onto(rootView);
+ *
  * Created by starliu on 2017/11/21.
  */
-
 public class UtilityBlur {
     private final int DEFAULT_SAMPLING = 2;
 

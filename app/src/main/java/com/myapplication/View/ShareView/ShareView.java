@@ -22,7 +22,7 @@ public class ShareView extends BaseActivity implements View.OnClickListener
         , IShareView{
     private final String TAG = ShareView.class.getSimpleName();
 
-    private Button btnGoogle, btnFB, btnLINE, btnWeChat, btnTwitter;
+    private Button btnGoogle, btnFB, btnLINE, btnWeChat, btnTwitter, btnWhatsapp, btnWeibo, btnChooser;
 
     private ShareViewPresenter presenter;
 
@@ -36,6 +36,9 @@ public class ShareView extends BaseActivity implements View.OnClickListener
         btnLINE = findViewById(R.id.share_view_btn_line);
         btnTwitter = findViewById(R.id.share_view_btn_twitter);
         btnWeChat = findViewById(R.id.share_view_btn_wechat);
+        btnWhatsapp = findViewById(R.id.share_view_btn_whatsapp);
+        btnWeibo = findViewById(R.id.share_view_btn_weibo);
+        btnChooser = findViewById(R.id.share_view_btn_chooser);
 
         presenter = new ShareViewPresenter(activity, this);
     }
@@ -52,6 +55,10 @@ public class ShareView extends BaseActivity implements View.OnClickListener
         btnTwitter.setOnClickListener(this);
 
         btnWeChat.setOnClickListener(this);
+
+        btnWhatsapp.setOnClickListener(this);
+        btnWeibo.setOnClickListener(this);
+        btnChooser.setOnClickListener(this);
     }
 
     @Override
@@ -106,7 +113,17 @@ public class ShareView extends BaseActivity implements View.OnClickListener
                 presenter.twitterShareClick("456", "https://www.google.com");
                 break;
             case R.id.share_view_btn_wechat:
+                presenter.wechatShareClick("123", "456");
+                break;
+            case R.id.share_view_btn_whatsapp:
+                presenter.whatsappShareClick("123", "456");
+                break;
+            case R.id.share_view_btn_weibo:
                 presenter.weiboShareCliclk("123", "456");
+                break;
+            case R.id.share_view_btn_chooser:
+                presenter.shareChooser(activity, "123", "456", "789"
+                        , null, UtilityShare.TYPE_TEXT);
                 break;
         }
     }

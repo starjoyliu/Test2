@@ -33,7 +33,9 @@ android {
         release {
             minifyEnabled false
             signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro',
+                    'proguard-fresco.pro'
         }
         debug {
             minifyEnabled false
@@ -51,20 +53,6 @@ android {
         cruncherEnabled = false
         useNewCruncher = false
     }
-
-//    flavorDimensions "minSdkVersion"
-//    productFlavors {
-//        // Build variant with minSdk 16 to include Facebook and FirebaseUI libraries.
-//        minSdkJellybean {
-//            dimension "minSdkVersion"
-//            minSdkVersion 16
-//        }
-//        // Build variant with minSdk 14, excludes Facebook and FirebaseUI libraries.
-//        minSdkIcs {
-//            dimension "minSdkVersion"
-//            minSdkVersion 14
-//        }
-//    }
 }
 
 def getJenkinsBuildNumber() {
@@ -93,6 +81,23 @@ dependencies {
     implementation 'com.google.android.gms:play-services:11.6.0'
     // LINE
     implementation(name:'line-sdk-4.0.6', ext:'aar')
+    /**
+     * Facebook fresco
+     */
+    compile 'com.facebook.fresco:fresco:1.5.0'
+    // For animated GIF support
+    compile 'com.facebook.fresco:animated-gif:1.5.0'
+    // For WebP support, including animated WebP
+    compile 'com.facebook.fresco:animated-webp:1.5.0'
+    compile 'com.facebook.fresco:webpsupport:1.5.0'
+    // For WebP support, without animations
+    compile 'com.facebook.fresco:webpsupport:1.5.0'
+    // Provide the Android support library (you might already have this or a similar dependency)
+    compile 'com.android.support:support-core-utils:27.0.0'
+    /**
+     * lottie to show animation pic
+     */
+    compile 'com.airbnb.android:lottie:2.3.0'
 }
 
 

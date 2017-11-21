@@ -322,9 +322,10 @@ public class UtilityShare {
      * @param subject
      * @param message
      * @param uri
-     * @param mineType
+     * @param mineType {@value TYPE_TEXT} {@value TYPE_IMAGE}
      */
-    public void shareChooser(Activity activity, String chooserTitle, String subject, String message, Uri uri, String mineType){
+    public void shareChooser(Activity activity, String chooserTitle, String subject, String message
+            , Uri uri, String mineType){
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
 
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);

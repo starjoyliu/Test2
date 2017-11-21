@@ -28,8 +28,8 @@
 
     <Button
         android:id="@+id/share_view_btn_twitter"
-        android:layout_width="95dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/share_view_btn_twitter"
@@ -55,4 +55,34 @@
         android:text="@string/share_view_btn_wechat"
         app:layout_constraintStart_toEndOf="@+id/share_view_btn_line"
         app:layout_constraintTop_toBottomOf="@+id/share_view_btn_fb" />
+
+    <Button
+        android:id="@+id/share_view_btn_whatsapp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/share_view_btn_whatsapp"
+        app:layout_constraintStart_toEndOf="@+id/share_view_btn_wechat"
+        app:layout_constraintTop_toBottomOf="@+id/share_view_btn_twitter" />
+
+    <Button
+        android:id="@+id/share_view_btn_weibo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/share_view_btn_weibo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/share_view_btn_line" />
+
+    <Button
+        android:id="@+id/share_view_btn_chooser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/share_view_btn_chooser"
+        app:layout_constraintStart_toEndOf="@+id/share_view_btn_weibo"
+        app:layout_constraintTop_toBottomOf="@+id/share_view_btn_wechat" />
 </android.support.constraint.ConstraintLayout>

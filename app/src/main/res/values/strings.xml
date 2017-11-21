@@ -102,4 +102,7 @@
     <string name="share_view_btn_twitter">twitter</string>
     <string name="share_view_btn_wechat">WeChat</string>
     <string name="share_view_btn_line">LINE</string>
+    <string name="share_view_btn_whatsapp">WhatsApp</string>
+    <string name="share_view_btn_weibo">Weibo</string>
+    <string name="share_view_btn_chooser">Chooser</string>
 </resources>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -65,6 +66,11 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
         btnHighlight = findViewById(R.id.btnHighlight);
         btnInteractive = findViewById(R.id.btnInteractive);
         btnShare = findViewById(R.id.btnShare);
+
+        LottieAnimationView animationView = findViewById(R.id.animation_view);
+        animationView.setAnimation("spinning_cat.json");
+        animationView.loop(true);
+        animationView.playAnimation();
 
         testActivityPresenter = new TestActivityPresenter(activity, this);
         utilityUI = UtilityUI.getNewInstance();

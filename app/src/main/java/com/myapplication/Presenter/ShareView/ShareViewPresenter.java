@@ -1,6 +1,7 @@
 package com.myapplication.Presenter.ShareView;
 
 import android.app.Activity;
+import android.net.Uri;
 
 import com.myapplication.Model.ShareView.ShareViewModel;
 import com.myapplication.View.ShareView.IShareView;
@@ -50,5 +51,20 @@ public class ShareViewPresenter implements IShareViewPresenter{
 
     public void weiboShareCliclk(String title, String message) {
         UtilityShare.getNewInstance().shareToWeibo(activity, title, message);
+    }
+
+    /**
+     * 利用內建chooser
+     * @param activity
+     * @param chooserTitle
+     * @param subject
+     * @param message
+     * @param uri
+     * @param mineType {@value TYPE_TEXT} {@value TYPE_IMAGE}
+     */
+    public void shareChooser(Activity activity, String chooserTitle, String subject, String message
+            , Uri uri, String mineType){
+        UtilityShare.getNewInstance().shareChooser(activity, chooserTitle, subject, message
+                , uri, mineType);
     }
 }

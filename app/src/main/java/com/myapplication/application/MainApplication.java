@@ -11,8 +11,6 @@ import com.myapplication.R;
 import com.myapplication.utility.UtilityTwitter;
 import com.myapplication.utility.skin.UtilitySkin;
 import com.orm.SugarContext;
-import com.twitter.sdk.android.core.Twitter;
-import com.variable.UtilityKeyStore;
 import com.variable.UtilityPhone;
 
 /**

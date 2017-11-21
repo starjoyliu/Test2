@@ -80,7 +80,8 @@ public class UtilityBlur {
      * @param bitmap
      * @param radius
      */
-    public void blurBitmap(Activity activity, ViewGroup viewRoot, ImageView view, Bitmap bitmap, int radius){
+    public void blurBitmap(Activity activity, ViewGroup viewRoot, ImageView view, Bitmap bitmap
+            , int radius){
         blurBitmap(activity, viewRoot, view, bitmap, radius, DEFAULT_SAMPLING);
     }
 

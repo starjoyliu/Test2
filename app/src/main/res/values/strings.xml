@@ -48,6 +48,7 @@
     <string name="activity_switch_highlight_view">Switch To Highlight</string>
     <string name="activity_switch_Interactive_view">Switch To Interactive</string>
     <string name="activity_switch_share_view">Switch To Share</string>
+    <string name="activity_switch_paypal_view">Paypal</string>
 
     <!-- Speech2TextActivity-->
     <string name="activity_speech_text">Speech</string>

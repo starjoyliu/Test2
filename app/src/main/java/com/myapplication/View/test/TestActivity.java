@@ -22,6 +22,7 @@ import com.myapplication.Presenter.TestActivityPresenter;
 import com.myapplication.R;
 import com.myapplication.View.HighlightOuterFrame.HighlightOuterFrameView;
 import com.myapplication.View.InteractiveAnimationView.InteractiveAnimationView;
+import com.myapplication.View.PayPalActivity;
 import com.myapplication.View.ShareView.ShareView;
 import com.myapplication.View.base.BaseActivity;
 import com.myapplication.View.floatingview.FloatingViewActivity;
@@ -30,6 +31,7 @@ import com.myapplication.View.speech2text.Speech2TextActivity;
 import com.variable.UtilityAnimation;
 import com.variable.UtilityDialog;
 import com.variable.UtilityKeyboard;
+import com.variable.UtilityPermission;
 import com.variable.UtilityRes;
 import com.variable.UtilitySwitchActivity;
 import com.variable.UtilityToast;
@@ -39,11 +41,12 @@ import com.variable.UtilityUI;
  * Created by star on 2017/11/1.
  */
 
-public class TestActivity extends BaseActivity implements ITestActivity, View.OnClickListener {
+public class TestActivity extends BaseActivity implements ITestActivity, View.OnClickListener
+, UtilityPermission.CameraPermission {
     private final String TAG = TestActivity.class.getSimpleName();
 
     private Button btnLoad, btnUpdate, btnSpeech, btnPIP, btnFV, btnHighlight, btnInteractive;
-    private Button btnShare;
+    private Button btnShare, btnPaypal;
     private EditText etName, etPhone;
     private TestActivityPresenter testActivityPresenter;
     private UtilityUI utilityUI;
@@ -66,6 +69,7 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
         btnHighlight = findViewById(R.id.btnHighlight);
         btnInteractive = findViewById(R.id.btnInteractive);
         btnShare = findViewById(R.id.btnShare);
+        btnPaypal = findViewById(R.id.btn_paypal);
 
         LottieAnimationView animationView = findViewById(R.id.animation_view);
         animationView.setAnimation("spinning_cat.json");
@@ -93,6 +97,7 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
         btnHighlight.setOnClickListener(this);
         btnInteractive.setOnClickListener(this);
         btnShare.setOnClickListener(this);
+        btnPaypal.setOnClickListener(this);
     }
 
     @Override
@@ -236,6 +241,9 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
             case R.id.btnShare:
                 UtilitySwitchActivity.getNewInstance().switchActivity(activity, ShareView.class, true);
                 break;
+            case R.id.btn_paypal:
+                UtilitySwitchActivity.getNewInstance().switchActivity(activity, PayPalActivity.class, true);
+                break;
             default:
                 Logger.v(TAG + " no match id");
                 break;
@@ -305,6 +313,11 @@ public class TestActivity extends BaseActivity implements ITestActivity, View.On
      * 切換到註冊畫面
      */
     private void switchToSignUp() {
+
+    }
+
+    @Override
+    public void onCameraPermission(boolean hasPermission) {
 
     }
 }

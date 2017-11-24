@@ -15,6 +15,8 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!-- 網路權限-->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- paypal -->
+    <uses-sdk android:minSdkVersion="16" tools:overrideLibrary="com.paypal.android.sdk.payments"/>
 
     <application
         android:allowBackup="true"
@@ -116,8 +118,7 @@
             <!--</intent-filter>-->
         </activity>
         <activity android:name=".View.ShareView.ShareView"></activity>
-
-        <!-- twitter receive-->
+        <activity android:name=".View.PayPalActivity"></activity>
     </application>
 
 </manifest>

@@ -98,6 +98,10 @@ dependencies {
      * lottie to show animation pic
      */
     compile 'com.airbnb.android:lottie:2.3.0'
+    /**
+     * Paypal api-16 (android 4.1.x higher)
+     */
+    compile 'com.paypal.sdk:paypal-android-sdk:2.15.3'
 }
 
 
